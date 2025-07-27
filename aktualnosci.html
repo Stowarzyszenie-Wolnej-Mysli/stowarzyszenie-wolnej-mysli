@@ -108,7 +108,7 @@
       }
     }
 
-    /* Enhanced Sticky Header */
+    /* === COPIED HEADER STYLES START === */
     header.sticky {
       position: fixed;
       top: 0;
@@ -129,18 +129,14 @@
       box-shadow: 0 4px 20px 0 rgba(0,0,0,0.15);
     }
     
+    .header-logo {
+        /* Adjusted initial height to match the original h-20 class */
+      height: 5rem; 
+      transition: height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    
     header.sticky.shrink .header-logo {
       height: 3rem;
-    }
-    
-    header.sticky.shrink .header-content {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
-    
-    header.sticky.shrink .nav-link {
-      font-size: 0.95rem;
-      padding: 0.5rem 0.75rem;
     }
     
     /* Mobile Navigation */
@@ -154,7 +150,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
       border-radius: 0.5rem;
-      /* Fix for click area issue by ensuring it's on top */
       position: relative;
       z-index: 1100;
     }
@@ -243,7 +238,8 @@
     
     /* Content spacer to prevent overlap with sticky header */
     .header-spacer {
-      height: 7rem;
+      /* Adjusted to match initial header height */
+      height: 7rem; 
     }
     
     /* Responsive breakpoints */
@@ -258,12 +254,13 @@
         justify-content: center;
       }
       
+      /* Adjusted mobile logo height */
       .header-logo {
-        height: 4rem; /* Adjusted logo for mobile */
+        height: 4rem; 
       }
 
       .header-spacer {
-        height: 5rem; /* Match mobile header height */
+        height: 6rem; /* Match mobile header height */
       }
     }
     
@@ -284,6 +281,8 @@
       outline: 2px solid #ffffff;
       outline-offset: 2px;
     }
+    /* === COPIED HEADER STYLES END === */
+
 
     /* Swiper Carousel Styles */
     .swiper-container {
@@ -334,13 +333,13 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Enhanced Sticky Shrinking Header -->
-  <header class="w-full sticky" role="banner">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 md:py-2 header-content relative">
+  <!-- === COPIED HEADER HTML START === -->
+  <header class="sticky" role="banner">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
         <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
-             class="header-logo h-20 md:h-20 w-auto rounded-lg shadow transition-all duration-300" />
+             class="header-logo rounded-lg shadow transition-all duration-300" />
       </a>
       
       <!-- Desktop Navigation -->
@@ -379,6 +378,7 @@
       </nav>
     </div>
   </header>
+  <!-- === COPIED HEADER HTML END === -->
   
   <!-- Content spacer -->
   <div class="header-spacer"></div>
@@ -467,16 +467,16 @@
     let ticking = false;
     
     function updateHeader() {
-      const header = document.querySelector('header');
+      const header = document.querySelector('header.sticky');
       const scrollY = window.scrollY;
       
-      if (scrollY > 100) {
+      // Use a smaller threshold for a quicker effect
+      if (scrollY > 50) {
         header.classList.add('shrink');
       } else {
         header.classList.remove('shrink');
       }
       
-      lastScrollY = scrollY;
       ticking = false;
     }
     
@@ -560,7 +560,7 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const headerHeight = document.querySelector('header').offsetHeight;
+          const headerHeight = document.querySelector('header.sticky').offsetHeight;
           const targetPosition = target.offsetTop - headerHeight - 20;
           
           window.scrollTo({
