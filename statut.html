@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statut - Stowarzyszenie Wolnej Myśli</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      background: #f7f7f7;
+      background-image: url('flaga.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
+    }
+    
+    .bg-overlay {
+      background: rgba(0,0,0,0.28);
+      border-radius: 1rem;
+      padding: 0.3em 1em;
+      display: inline-block;
+    }
+    
+    .red-main { 
+      background: linear-gradient(90deg, #D32F2F 0%, #b71c1c 100%); 
+    }
+    
+    .hover\:red-dark:hover { 
+      background: linear-gradient(90deg, #b71c1c 0%, #D32F2F 100%); 
+    }
+    
+    .card-bg {
+      background: rgba(255,255,255,0.9);
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: -0.01em;
+    }
+    
+    .text-hero {
+      color: #fff;
+    }
+    
+    .btn-main {
+      background: rgba(211,47,47,0.95);
+      color: #fff;
+      font-weight: bold;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    
+    .btn-main:hover, .btn-main:focus {
+      background: rgba(183,28,28,0.95);
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      transform: translateY(-1px);
+    }
+    
+    /* Enhanced Sticky Header */
+    header.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    header.sticky.shrink {
+      padding: 0.5rem 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px 0 rgba(0,0,0,0.15);
+    }
+    
+    header.sticky.shrink .header-logo {
+      height: 3rem;
+    }
+    
+    header.sticky.shrink .header-content {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    header.sticky.shrink .nav-link {
+      font-size: 0.95rem;
+      padding: 0.5rem 0.75rem;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+    }
+    
+    .mobile-menu-btn:hover,
+    .mobile-menu-btn:focus {
+      background: rgba(255,255,255,0.1);
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    .mobile-nav.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .mobile-nav a {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .mobile-nav a:hover,
+    .mobile-nav a:focus {
+      background: rgba(211,47,47,0.2);
+      color: #D32F2F;
+      outline: 2px solid #D32F2F;
+      outline-offset: 2px;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus {
+      color: #D32F2F;
+      background: rgba(255,255,255,0.1);
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+    
+    /* Content spacer to prevent overlap */
+    .header-spacer {
+      height: 7rem;
+    }
+    
+    /* Responsive breakpoints */
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .header-spacer {
+        height: 5rem;
+      }
+      
+      header.sticky.shrink .header-spacer {
+        height: 4rem;
+      }
+    }
+    
+    /* Prevent scrolling when mobile menu is open */
+    body.menu-open {
+      overflow: hidden;
+    }
+    
+    /* Focus improvements for accessibility */
+    *:focus {
+      outline: 2px solid #D32F2F;
+      outline-offset: 2px;
+    }
+    
+    /* Improved button focus states */
+    button:focus,
+    .btn-main:focus {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+
+    /* Statute specific styles */
+    .statut-content h3 {
+        color: #b71c1c;
+        border-bottom: 2px solid rgba(183,28,28,0.2);
+        padding-bottom: 0.5rem;
+    }
+    .statut-content h4 {
+        color: #333;
+    }
+    .statut-content p, .statut-content li {
+        color: #4a5568;
+        line-height: 1.7;
+    }
+    .statut-content ul {
+        list-style-position: inside;
+        padding-left: 1rem;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Enhanced Sticky Shrinking Header -->
+  <header class="w-full sticky" role="banner">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
+      <!-- Logo -->
+      <a href="index.html" class="flex-shrink-0">
+        <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
+             class="header-logo h-20 w-auto rounded-lg shadow transition-all duration-300" />
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
+        <a href="index.html#aktualnosci" class="nav-link">Aktualności</a>
+        <a href="index.html#projekty" class="nav-link">Projekty</a>
+        <a href="statut.html" class="nav-link">Statut</a>
+        <a href="index.html#zarzad" class="nav-link">Zarząd</a>
+        <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        class="mobile-menu-btn" 
+        id="mobile-menu-btn" 
+        aria-label="Otwórz menu nawigacyjne"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+      
+      <!-- Mobile Navigation -->
+      <nav 
+        class="mobile-nav" 
+        id="mobile-nav" 
+        role="navigation" 
+        aria-label="Menu mobilne"
+        aria-hidden="true"
+      >
+        <a href="index.html#aktualnosci">Aktualności</a>
+        <a href="index.html#projekty">Projekty</a>
+        <a href="statut.html">Statut</a>
+        <a href="index.html#zarzad">Zarząd</a>
+        <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg text-center">Wesprzyj nas</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Content spacer -->
+  <div class="header-spacer"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <section id="statut-content" class="max-w-7xl mx-auto py-12 px-4">
+      <h2 class="text-3xl font-bold text-hero mb-8 text-center"><span class="bg-overlay">Statut Stowarzyszenia</span></h2>
+      <div class="card-bg p-6 md:p-10 text-gray-800 statut-content">
+        
+        <h3 class="text-2xl font-bold mt-6 mb-4">ROZDZIAŁ I - POSTANOWIENIA OGÓLNE</h3>
+        
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 1. Nazwa i siedziba</h4>
+        <p>1. Stowarzyszenie nosi nazwę: "Stowarzyszenie Wolnej Myśli", zwane dalej "Stowarzyszeniem".</p>
+        <p>2. Siedzibą Stowarzyszenia jest Warszawska 133, 05-092 Łomianki, Polska.</p>
+        <p>3. Terenem działania Stowarzyszenia jest Rzeczpospolita Polska.</p>
+        <p>4. Dla realizacji celów statutowych Stowarzyszenie może prowadzić działalność na terenie innych państw z poszanowaniem tamtejszego prawa.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 2. Podstawy prawne</h4>
+        <p>1. Stowarzyszenie działa na podstawie ustawy z dnia 7 kwietnia 1989 r. Prawo o stowarzyszeniach (tekst jedn. Dz.U. z 2020 r. poz. 2261 z późn. zm.) oraz niniejszego statutu.</p>
+        <p>2. Stowarzyszenie posiada osobowość prawną i jest zawiązane na czas nieograniczony.</p>
+        <p>3. Stowarzyszenie podlega wpisowi do Krajowego Rejestru Sądowego.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 3. Cele Stowarzyszenia</h4>
+        <p>Celem Stowarzyszenia jest:</p>
+        <ul>
+          <li>a) wspieranie i ochrona wolności myśli, słowa i przekonań w ramach obowiązującego prawa;</li>
+          <li>b) działalność edukacyjna w zakresie praw obywatelskich i swobód demokratycznych;</li>
+          <li>c) wspieranie rozwoju krytycznego myślenia i racjonalnego podejścia do problemów społecznych;</li>
+          <li>d) edukacja w zakresie cyberbezpieczeństwa i ochrony prywatności;</li>
+          <li>e) wspieranie transparentności i jawności w życiu publicznym;</li>
+          <li>f) działalność kulturalna i oświatowa promująca swobodę wypowiedzi.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 4. Sposoby realizacji celów</h4>
+        <p>Stowarzyszenie realizuje swoje cele poprzez:</p>
+        <ul>
+          <li>a) organizację konferencji, seminariów i wykładów;</li>
+          <li>b) prowadzenie działalności wydawniczej i publikacyjnej;</li>
+          <li>c) tworzenie programów edukacyjnych;</li>
+          <li>d) współpracę z instytucjami naukowymi i edukacyjnymi;</li>
+          <li>e) organizację warsztatów i szkoleń;</li>
+          <li>f) prowadzenie działalności informacyjnej i promocyjnej;</li>
+          <li>g) współpracę z organizacjami o podobnych celach;</li>
+          <li>h) działalność rzeczniczą w zakresie ochrony praw obywatelskich.</li>
+        </ul>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ II - CZŁONKOWIE</h3>
+        
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 5. Rodzaje członkostwa</h4>
+        <p>Członkowie Stowarzyszenia dzielą się na:</p>
+        <ul>
+          <li>a) członków zwyczajnych;</li>
+          <li>b) członków wspierających;</li>
+          <li>c) członków honorowych.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 6. Członkowie zwyczajni</h4>
+        <p>1. Członkiem zwyczajnym może być osoba fizyczna, która:</p>
+        <ul>
+            <li>a) posiada pełną zdolność do czynności prawnych;</li>
+            <li>b) nie jest pozbawiona praw publicznych;</li>
+            <li>c) złoży pisemną deklarację członkowską;</li>
+            <li>d) otrzyma pozytywną opinię dwóch członków Stowarzyszenia;</li>
+            <li>e) zostanie przyjęta uchwałą Zarządu większością głosów.</li>
+        </ul>
+        <p>2. Członek zwyczajny ma prawo do:</p>
+        <ul>
+            <li>a) uczestnictwa w Walnym Zebraniu Członków z prawem głosu;</li>
+            <li>b) wybierania i bycia wybieranym do władz Stowarzyszenia;</li>
+            <li>c) składania wniosków i postulatów dotyczących działalności Stowarzyszenia;</li>
+            <li>d) korzystania z dorobku i majątku Stowarzyszenia zgodnie z jego celami;</li>
+            <li>e) otrzymywania informacji o działalności Stowarzyszenia;</li>
+            <li>f) odwołania się od decyzji Zarządu do Walnego Zebrania Członków.</li>
+        </ul>
+        <p>3. Członek zwyczajny ma obowiązek:</p>
+        <ul>
+            <li>a) przestrzegania statutu i uchwał władz Stowarzyszenia;</li>
+            <li>b) regularnego opłacania składek członkowskich;</li>
+            <li>c) aktywnego uczestnictwa w realizacji celów Stowarzyszenia;</li>
+            <li>d) działania na rzecz dobra Stowarzyszenia;</li>
+            <li>e) przestrzegania zasad etycznych i przepisów prawa.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 7. Członkowie wspierający</h4>
+        <p>1. Członkiem wspierającym może być osoba fizyczna lub prawna, która deklaruje wsparcie celów Stowarzyszenia.</p>
+        <p>2. Członek wspierający ma prawo do:</p>
+        <ul>
+            <li>a) uczestnictwa w Walnym Zebraniu Członków bez prawa głosu;</li>
+            <li>b) otrzymywania informacji o działalności Stowarzyszenia;</li>
+            <li>c) korzystania z dorobku Stowarzyszenia.</li>
+        </ul>
+        <p>3. Członek wspierający ma obowiązek przestrzegania statutu i opłacania składek w wysokości ustalonej przez Zarząd.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 8. Członkowie honorowi</h4>
+        <p>1. Członkiem honorowym może być osoba fizyczna, która wniosła wybitny wkład w działalność i rozwój Stowarzyszenia.</p>
+        <p>2. Członkostwo honorowe nadaje Walne Zebranie Członków na wniosek Zarządu większością 2/3 głosów.</p>
+        <p>3. Członek honorowy ma prawa członka zwyczajnego i jest zwolniony z opłacania składek członkowskich.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 9. Utrata członkostwa</h4>
+        <p>1. Członkostwo ustaje w przypadku:</p>
+        <ul>
+            <li>a) dobrowolnego wystąpienia potwierdzonego pisemnie;</li>
+            <li>b) śmierci członka;</li>
+            <li>c) wykluczenia z powodu:
+                <ul>
+                    <li>rażącego naruszenia statutu lub przepisów prawa;</li>
+                    <li>działania na szkodę Stowarzyszenia;</li>
+                    <li>niepłacenia składek przez okres 12 miesięcy mimo upomnienia;</li>
+                    <li>prawomocnego skazania za przestępstwo umyślne.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>2. O wykluczeniu członka decyduje Zarząd większością 2/3 głosów przy obecności co najmniej połowy składu.</p>
+        <p>3. Od decyzji o wykluczeniu przysługuje odwołanie do Walnego Zebrania Członków w terminie 30 dni.</p>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ III - WŁADZE STOWARZYSZENIA</h3>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 10. Władze Stowarzyszenia</h4>
+        <p>Władzami Stowarzyszenia są:</p>
+        <ul>
+            <li>a) Walne Zebranie Członków;</li>
+            <li>b) Zarząd;</li>
+            <li>c) Komisja Rewizyjna.</li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 11. Walne Zebranie Członków</h4>
+        <p>1. Walne Zebranie Członków jest najwyższą władzą Stowarzyszenia.</p>
+        <p>2. W Walnym Zebraniu uczestniczą członkowie zwyczajni z prawem głosu oraz członkowie wspierający i honorowi z prawem głosu doradczego.</p>
+        <p>3. Do kompetencji Walnego Zebrania należy:</p>
+        <ul>
+            <li>a) uchwalanie kierunków działania Stowarzyszenia;</li>
+            <li>b) wybór i odwoływanie członków Zarządu i Komisji Rewizyjnej;</li>
+            <li>c) uchwalanie budżetu i zatwierdzanie sprawozdań finansowych;</li>
+            <li>d) zmiana statutu;</li>
+            <li>e) rozwiązanie Stowarzyszenia;</li>
+            <li>f) nadawanie członkostwa honorowego;</li>
+            <li>g) rozpatrywanie odwołań od decyzji Zarządu;</li>
+            <li>h) ustalanie wysokości składek członkowskich.</li>
+        </ul>
+        <p>4. Zwyczajne Walne Zebranie odbywa się co najmniej raz w roku.</p>
+        <p>5. Nadzwyczajne Walne Zebranie może być zwołane przez:</p>
+        <ul>
+            <li>a) Zarząd z własnej inicjatywy;</li>
+            <li>b) Komisję Rewizyjną;</li>
+            <li>c) grupę co najmniej 1/3 członków zwyczajnych.</li>
+        </ul>
+        <p>6. Walne Zebranie zwołuje Zarząd co najmniej 21 dni wcześniej poprzez zawiadomienie wszystkich członków.</p>
+        <p>7. Walne Zebranie jest prawomocne przy obecności co najmniej 1/3 członków uprawnionych do głosowania.</p>
+        <p>8. W przypadku braku kworum, drugie zebranie (po 30 minutach) jest prawomocne bez względu na liczbę obecnych.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 12. Uchwały Walnego Zebrania</h4>
+        <p>1. Uchwały zapadają zwykłą większością głosów, za wyjątkiem:</p>
+        <ul>
+            <li>a) zmiany statutu - wymagana większość 2/3 głosów;</li>
+            <li>b) rozwiązania Stowarzyszenia - wymagana większość 2/3 głosów;</li>
+            <li>c) wykluczenia członka - wymagana większość 2/3 głosów.</li>
+        </ul>
+        <p>2. Głosowanie jest jawne, z wyjątkiem wyborów do władz i spraw osobowych.</p>
+        <p>3. Członkowie mogą uczestniczyć w Walnym Zebraniu przy wykorzystaniu środków komunikacji elektronicznej, jeśli statut nie stanowi inaczej.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 13. Zarząd</h4>
+        <p>1. Zarząd składa się z 3 do 7 członków wybieranych przez Walne Zebranie na kadencję 3 lat.</p>
+        <p>2. Zarząd wybiera ze swojego grona Prezesa, Wiceprezesa i Skarbnika.</p>
+        <p>3. Członkiem Zarządu może być wyłącznie członek zwyczajny Stowarzyszenia.</p>
+        <p>4. Do kompetencji Zarządu należy:</p>
+        <ul>
+            <li>a) reprezentowanie Stowarzyszenia na zewnątrz;</li>
+            <li>b) zarządzanie majątkiem Stowarzyszenia;</li>
+            <li>c) przyjmowanie i wykluczanie członków;</li>
+            <li>d) wykonywanie uchwał Walnego Zebrania;</li>
+            <li>e) zwoływanie Walnego Zebrania Członków;</li>
+            <li>f) prowadzenie bieżącej działalności Stowarzyszenia;</li>
+            <li>g) sporządzanie sprawozdań z działalności i finansowych;</li>
+            <li>h) zatrudnianie i zwalnianie pracowników;</li>
+            <li>i) zawieranie umów i podejmowanie zobowiązań majątkowych.</li>
+        </ul>
+        <p>5. Zarząd podejmuje uchwały zwykłą większością głosów przy obecności co najmniej połowy składu.</p>
+        <p>6. Posiedzenia Zarządu odbywają się co najmniej raz na kwartał.</p>
+        <p>7. Posiedzenia zwołuje Prezes lub dwóch członków Zarządu.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 14. Komisja Rewizyjna</h4>
+        <p>1. Komisja Rewizyjna składa się z 3 członków wybieranych przez Walne Zebranie na kadencję 3 lat.</p>
+        <p>2. Komisja wybiera ze swojego grona Przewodniczącego.</p>
+        <p>3. Członkowie Komisji Rewizyjnej nie mogą być członkami Zarządu ani pozostawać z nimi w związku małżeńskim lub pokrewieństwa do 2 stopnia.</p>
+        <p>4. Do kompetencji Komisji Rewizyjnej należy:</p>
+        <ul>
+            <li>a) kontrola całokształtu działalności Stowarzyszenia;</li>
+            <li>b) kontrola gospodarki finansowej i księgowej;</li>
+            <li>c) składanie sprawozdań Walnemu Zebraniu z działalności kontrolnej;</li>
+            <li>d) występowanie z wnioskami o odwołanie członków Zarządu;</li>
+            <li>e) żądanie zwołania Nadzwyczajnego Walnego Zebrania.</li>
+        </ul>
+        <p>5. Komisja Rewizyjna ma prawo żądania od Zarządu dokumentów, wyjaśnień i informacji.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 15. Reprezentacja Stowarzyszenia</h4>
+        <p>1. Stowarzyszenie reprezentuje Prezes działający jednoosobowo.</p>
+        <p>2. W przypadku nieobecności Prezesa, Stowarzyszenie reprezentuje Wiceprezes.</p>
+        <p>3. Do zaciągania zobowiązań majątkowych powyżej kwoty 10.000 zł wymagane są podpisy dwóch członków Zarządu.</p>
+        <p>4. Zarząd może udzielić pełnomocnictw do reprezentowania Stowarzyszenia w określonych sprawach.</p>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ IV - MAJĄTEK I GOSPODARKA FINANSOWA</h3>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 16. Majątek Stowarzyszenia</h4>
+        <p>1. Majątek Stowarzyszenia powstaje z:</p>
+        <ul>
+            <li>a) składek członkowskich;</li>
+            <li>b) darowizn, spadków i zapisów;</li>
+            <li>c) dochodów z działalności statutowej;</li>
+            <li>d) dotacji i subwencji;</li>
+            <li>e) odsetek od lokat bankowych;</li>
+            <li>f) wpływów z działalności gospodarczej;</li>
+            <li>g) ofiarności publicznej.</li>
+        </ul>
+        <p>2. Stowarzyszenie może prowadzić działalność gospodarczą w zakresie służącym realizacji celów statutowych.</p>
+        <p>3. Dochód z działalności gospodarczej służy wyłącznie realizacji celów statutowych i nie może być przeznaczony do podziału między członków.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 17. Składki członkowskie</h4>
+        <p>1. Wysokość składek członkowskich ustala Walne Zebranie Członków na wniosek Zarządu.</p>
+        <p>2. Członkowie zwyczajni opłacają składki w wysokości ustalonej przez Walne Zebranie.</p>
+        <p>3. Członkowie wspierający opłacają składki w wysokości ustalonej przez Zarząd.</p>
+        <p>4. Członkowie honorowi są zwolnieni z opłacania składek.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 18. Zasady gospodarki finansowej</h4>
+        <p>1. Rok obrotowy jest równy rokowi kalendarzowemu.</p>
+        <p>2. Za gospodarkę finansową odpowiada Zarząd.</p>
+        <p>3. Środki finansowe przechowuje się na rachunkach bankowych.</p>
+        <p>4. Sprawozdania finansowe podlegają kontroli Komisji Rewizyjnej i zatwierdzeniu przez Walne Zebranie.</p>
+        <p>5. Księgi rachunkowe prowadzi się zgodnie z przepisami o rachunkowości.</p>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ V - OCHRONA PRAW CZŁONKÓW</h3>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 19. Gwarancje prawne</h4>
+        <p>1. Stowarzyszenie w ramach swoich możliwości zapewnia członkom:</p>
+        <ul>
+            <li>a) wsparcie w zakresie edukacji prawnej;</li>
+            <li>b) pomoc w kontaktach z organami publicznymi;</li>
+            <li>c) informacje o przepisach prawnych dotyczących działalności statutowej;</li>
+            <li>d) wsparcie w zakresie cyberbezpieczeństwa.</li>
+        </ul>
+        <p>2. Stowarzyszenie może udzielać pomocy prawnej członkom w sprawach związanych z realizacją celów statutowych, w ramach posiadanych środków i możliwości.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 20. Procedury ochronne</h4>
+        <p>1. W przypadku naruszeń praw członków związanych z działalnością statutową, Stowarzyszenie może:</p>
+        <ul>
+            <li>a) interweniować u odpowiednich organów;</li>
+            <li>b) wskazać możliwości obrony prawnej;</li>
+            <li>c) przekazać sprawę do właściwych instytucji;</li>
+            <li>d) nagłaśniać przypadki naruszeń.</li>
+        </ul>
+        <p>2. Wszelkie działania Stowarzyszenia prowadzone są w granicach prawa i zgodnie z procedurami demokratycznego państwa prawnego.</p>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ VI - POSTANOWIENIA KOŃCOWE</h3>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 21. Zmiana statutu</h4>
+        <p>1. Zmiana statutu może nastąpić wyłącznie na podstawie uchwały Walnego Zebrania Członków podjętej większością 2/3 głosów.</p>
+        <p>2. Wniosek o zmianę statutu może złożyć:</p>
+        <ul>
+            <li>a) Zarząd;</li>
+            <li>b) Komisja Rewizyjna;</li>
+            <li>c) grupa co najmniej 1/3 członków zwyczajnych.</li>
+        </ul>
+        <p>3. Zarząd zawiadamia sąd rejestrowy o zmianie statutu w terminie 7 dni.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 22. Rozwiązanie Stowarzyszenia</h4>
+        <p>1. Stowarzyszenie ulega rozwiązaniu na podstawie uchwały Walnego Zebrania Członków podjętej większością 2/3 głosów.</p>
+        <p>2. Wniosek o rozwiązanie może złożyć:</p>
+        <ul>
+            <li>a) Zarząd;</li>
+            <li>b) grupa co najmniej 1/2 członków zwyczajnych.</li>
+        </ul>
+        <p>3. Uchwała o rozwiązaniu określa sposób likwidacji i przeznaczenie majątku.</p>
+        <p>4. Majątek pozostały po likwidacji przekazuje się na cele statutowe wskazane przez Walne Zebranie.</p>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">§ 23. Postanowienia końcowe</h4>
+        <p>1. W sprawach nieuregulowanych niniejszym statutem stosuje się przepisy ustawy Prawo o stowarzyszeniach oraz inne właściwe przepisy prawa.</p>
+        <p>2. Regulamin organizacyjny może określać szczegółowe zasady funkcjonowania Stowarzyszenia.</p>
+        <p>3. Niniejszy statut wchodzi w życie z dniem rejestracji Stowarzyszenia w Krajowym Rejestrze Sądowym.</p>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-overlay border-t mt-auto">
+    <div class="max-w-7xl mx-auto py-6 px-4 flex flex-col md:flex-row items-center justify-between text-gray-200 text-sm">
+      <div>© 2025 Stowarzyszenie Wolnej Myśli. Wszelkie prawa zastrzeżone.</div>
+      <div class="mt-2 md:mt-0">
+        <a href="index.html#aktualnosci" class="hover:text-red-700 mx-2 text-hero">Aktualności</a>
+        <a href="index.html#projekty" class="hover:text-red-700 mx-2 text-hero">Projekty</a>
+        <a href="statut.html" class="hover:text-red-700 mx-2 text-hero">Statut</a>
+        <a href="index.html#zarzad" class="hover:text-red-700 mx-2 text-hero">Zarząd</a>
+        <a href="index.html#kontakt" class="hover:text-red-700 mx-2 text-hero">Wesprzyj nas</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Enhanced JavaScript -->
+  <script>
+    // Enhanced shrinking sticky header with better performance
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    
+    function updateHeader() {
+      const header = document.querySelector('header');
+      const scrollY = window.scrollY;
+      
+      if (scrollY > 100) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+      
+      lastScrollY = scrollY;
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // Enhanced mobile menu with accessibility support
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const body = document.body;
+    let menuOpen = false;
+    
+    function toggleMobileMenu() {
+      menuOpen = !menuOpen;
+      
+      if (menuOpen) {
+        mobileNav.classList.add('active');
+        mobileNav.setAttribute('aria-hidden', 'false');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        menuBtn.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+        body.classList.add('menu-open');
+        
+        // Focus first menu item for accessibility
+        const firstMenuItem = mobileNav.querySelector('a');
+        if (firstMenuItem) {
+          setTimeout(() => firstMenuItem.focus(), 100);
+        }
+      } else {
+        closeMobileMenu();
+      }
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
+      body.classList.remove('menu-open');
+      menuOpen = false;
+    }
+    
+    // Event listeners
+    menuBtn.addEventListener('click', toggleMobileMenu);
+    
+    // Close menu when clicking on navigation links
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        closeMobileMenu();
+        menuBtn.focus(); // Return focus to menu button
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (menuOpen && !menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && menuOpen) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Enhanced smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
