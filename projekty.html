@@ -178,7 +178,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2rem; /* Adjusted padding */
+        padding: 2rem;
+        box-sizing: border-box;
     }
 
     .project-content {
@@ -196,9 +197,7 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        /* === FIX: Added padding-bottom and box-sizing === */
-        padding-bottom: 90px; /* Creates space at the bottom for the thumbnail nav */
-        box-sizing: border-box; /* Ensures padding is included in height calculation */
+        box-sizing: border-box;
     }
     
     .project-image-container {
@@ -296,11 +295,18 @@
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
       .mobile-menu-btn { display: flex; }
-      .project-slide { padding: 1rem; }
       
+      /* === AESTHETIC FIX === */
+      /* Add padding to the slide container itself, not the content. */
+      /* This creates a clean visual separation from the bottom nav. */
+      .project-slide { 
+        padding: 1rem; 
+        padding-bottom: 85px; /* Space for thumbnail nav */
+      }
+      
+      /* Remove the old padding fix from the content box */
       .project-content {
-        /* Adjust padding for mobile thumbnail bar height */
-        padding-bottom: 75px; 
+        padding-bottom: 0; 
       }
 
       .project-image-container {
@@ -419,99 +425,89 @@
 
   <!-- JavaScript for all functionality -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- Header Shrink ---
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-        const header = document.querySelector('header.sticky');
-        
-        function updateHeader() {
-            // This page doesn't scroll, but the logic is kept for potential future use
-            if (window.scrollY > 30) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
-            }
-            ticking = false;
+    // SYNTAX ERROR FIX: Removed the 'DOMContentLoaded' event listener wrapper.
+    // Since the script is at the end of the <body>, the DOM is already loaded,
+    // making the listener unnecessary and a potential source of errors.
+
+    // --- Header Shrink ---
+    const header = document.querySelector('header.sticky');
+    function updateHeader() {
+        // This page doesn't scroll, but the logic is kept for potential future use
+        if (window.scrollY > 30) {
+            header.classList.add('shrink');
+        } else {
+            header.classList.remove('shrink');
         }
-        
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateHeader);
-                ticking = true;
-            }
-        }
-        
-        // Check header state on load
-        updateHeader();
+    }
+    // Check header state on load
+    updateHeader();
 
-        // --- Mobile Menu ---
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileNav = document.getElementById('mobile-nav');
-        const body = document.body;
-        let menuOpen = false;
-        
-        function toggleMobileMenu() {
-            menuOpen = !menuOpen;
-            mobileNav.classList.toggle('active', menuOpen);
-            menuBtn.setAttribute('aria-expanded', menuOpen);
-            menuBtn.innerHTML = menuOpen ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-bars" aria-hidden="true"></i>';
-            body.classList.toggle('menu-open', menuOpen);
-        }
-        
-        menuBtn.addEventListener('click', toggleMobileMenu);
+    // --- Mobile Menu ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const body = document.body;
+    let menuOpen = false;
+    
+    function toggleMobileMenu() {
+        menuOpen = !menuOpen;
+        mobileNav.classList.toggle('active', menuOpen);
+        menuBtn.setAttribute('aria-expanded', menuOpen);
+        menuBtn.innerHTML = menuOpen ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-bars" aria-hidden="true"></i>';
+        body.classList.toggle('menu-open', menuOpen);
+    }
+    
+    menuBtn.addEventListener('click', toggleMobileMenu);
 
-        // --- Carousel Logic ---
-        const carousel = document.getElementById('carousel-container');
-        const slides = document.querySelectorAll('.project-slide');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const slideCount = slides.length;
-        let currentSlide = 0;
+    // --- Carousel Logic ---
+    const carousel = document.getElementById('carousel-container');
+    const slides = document.querySelectorAll('.project-slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const slideCount = slides.length;
+    let currentSlide = 0;
 
-        function goToSlide(slideIndex) {
-            if (slideIndex < 0) {
-                slideIndex = slideCount - 1;
-            } else if (slideIndex >= slideCount) {
-                slideIndex = 0;
-            }
-
-            carousel.style.transform = `translateX(-${slideIndex * 100}vw)`;
-            currentSlide = slideIndex;
-
-            // Update active thumbnail
-            thumbnails.forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentSlide);
-            });
+    function goToSlide(slideIndex) {
+        if (slideIndex < 0) {
+            slideIndex = slideCount - 1;
+        } else if (slideIndex >= slideCount) {
+            slideIndex = 0;
         }
 
-        nextBtn.addEventListener('click', () => {
-            goToSlide(currentSlide + 1);
-        });
+        carousel.style.transform = `translateX(-${slideIndex * 100}vw)`;
+        currentSlide = slideIndex;
 
-        prevBtn.addEventListener('click', () => {
-            goToSlide(currentSlide - 1);
+        // Update active thumbnail
+        thumbnails.forEach((thumb, index) => {
+            thumb.classList.toggle('active', index === currentSlide);
         });
+    }
 
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                goToSlide(parseInt(thumb.dataset.slide));
-            });
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                goToSlide(currentSlide + 1);
-            } else if (e.key === 'ArrowLeft') {
-                goToSlide(currentSlide - 1);
-            }
-        });
-
-        // Initialize first slide
-        goToSlide(0);
+    nextBtn.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
     });
+
+    prevBtn.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+    });
+
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            goToSlide(parseInt(thumb.dataset.slide));
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft') {
+            goToSlide(currentSlide - 1);
+        }
+    });
+
+    // Initialize first slide
+    goToSlide(0);
   </script>
 </body>
 </html>
