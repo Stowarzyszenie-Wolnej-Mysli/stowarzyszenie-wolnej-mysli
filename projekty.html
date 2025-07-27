@@ -14,7 +14,11 @@
       height: 100%;
       overflow: hidden; /* Prevent body scroll */
       font-family: 'Segoe UI', Calibri, Arial, sans-serif;
-      background: #f7f7f7;
+      background-image: url('flaga.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
     }
     
     .main-container {
@@ -173,8 +177,6 @@
         align-items: center;
         justify-content: center;
         padding: 3rem; /* Space from viewport edges */
-        background-size: cover;
-        background-position: center;
     }
 
     .project-content {
@@ -319,7 +321,7 @@
           <a href="projekty.html">Projekty</a>
           <a href="statut.html">Statut</a>
           <a href="index.html#zarzad">Zarząd</a>
-          <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg text-center">Wesprzyj nas</a>
+          <a href="index.html#kontakt">Wesprzyj nas</a>
         </nav>
       </div>
     </header>
@@ -328,9 +330,10 @@
     <main class="carousel-wrapper">
       <div class="carousel-container" id="carousel-container">
         <!-- Project 1 Slide -->
-        <div class="project-slide" style="background-image: url('Projekt 1.svg');">
+        <div class="project-slide">
             <div class="project-content">
                 <div class="text-content">
+                    <img src="Projekt 1.svg" alt="Projekt Grupy Krwi" class="mx-auto mb-6 h-40 md:h-48 w-auto rounded-lg shadow-lg">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Obowiązkowe Oznaczenie Grupy Krwi na Dowodzie Osobistym</h2>
                     <p class="text-lg md:text-xl">
                         Szczegółowa analiza modeli międzynarodowych, w których takie rozwiązanie już funkcjonuje. Badanie potencjalnych korzyści dla polskiego systemu opieki zdrowotnej, w tym skrócenia czasu oczekiwania na transfuzję krwi w nagłych wypadkach i zwiększenia bezpieczeństwa pacjentów.
@@ -339,9 +342,10 @@
             </div>
         </div>
         <!-- Project 2 Slide -->
-        <div class="project-slide" style="background-image: url('Projekt 2.svg');">
+        <div class="project-slide">
             <div class="project-content">
                 <div class="text-content">
+                    <img src="Projekt 2.svg" alt="Projekt Konopi" class="mx-auto mb-6 h-40 md:h-48 w-auto rounded-lg shadow-lg">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Jakość Życia i Zdrowie w Kontekście Stosowania Konopi</h2>
                     <p class="text-lg md:text-xl">
                         Kompleksowe badanie wpływu stosowania konopi na zdrowie publiczne. Analiza potencjalnych negatywnych skutków zdrowotnych i społecznych, a także badanie korzyści terapeutycznych. Celem jest opracowanie rekomendacji dla świadomych i opartych na dowodach naukowych regulacji prawnych.
