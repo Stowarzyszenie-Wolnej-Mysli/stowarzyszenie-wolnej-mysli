@@ -26,8 +26,8 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-top: 6rem; /* ADDED: Space for the fixed header (4rem logo + 2rem padding) */
-      box-sizing: border-box; /* ADDED: Ensure padding is included in the 100vh height */
+      padding-top: 6.5rem; /* Space for the fixed header */
+      box-sizing: border-box; /* Ensure padding is included in the 100vh height */
     }
 
     .bg-overlay {
@@ -178,7 +178,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 3rem; /* Space from viewport edges */
+        padding: 2rem; /* Adjusted padding */
     }
 
     .project-content {
@@ -195,7 +195,10 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         display: flex;
         flex-direction: column;
-        overflow: hidden; /* Ensure children respect border radius */
+        overflow: hidden;
+        /* === FIX: Added padding-bottom and box-sizing === */
+        padding-bottom: 90px; /* Creates space at the bottom for the thumbnail nav */
+        box-sizing: border-box; /* Ensures padding is included in height calculation */
     }
     
     .project-image-container {
@@ -295,15 +298,19 @@
       .mobile-menu-btn { display: flex; }
       .project-slide { padding: 1rem; }
       
-      /* Adjust layout for better readability on mobile */
+      .project-content {
+        /* Adjust padding for mobile thumbnail bar height */
+        padding-bottom: 75px; 
+      }
+
       .project-image-container {
-        height: 40%; /* Reduce image height to give more space for text */
+        height: 40%;
       }
       .project-text-container {
-        height: 60%; /* Increase text container height */
-        justify-content: flex-start; /* Align text to the top */
+        height: 60%;
+        justify-content: flex-start;
         padding: 1.5rem;
-        padding-top: 2rem; /* Add some space between image and text */
+        padding-top: 1rem;
       }
 
       .carousel-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
@@ -419,6 +426,7 @@
         const header = document.querySelector('header.sticky');
         
         function updateHeader() {
+            // This page doesn't scroll, but the logic is kept for potential future use
             if (window.scrollY > 30) {
                 header.classList.add('shrink');
             } else {
@@ -434,7 +442,7 @@
             }
         }
         
-        // This page doesn't scroll, so we only need to check on load.
+        // Check header state on load
         updateHeader();
 
         // --- Mobile Menu ---
