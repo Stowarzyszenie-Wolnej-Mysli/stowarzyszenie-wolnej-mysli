@@ -61,6 +61,7 @@
       height: 100%; /* Ensure cards have same height */
       display: flex;
       flex-direction: column;
+      flex-grow: 1; /* Ensure card fills the slide height */
     }
     
     .contact-bg {
@@ -153,6 +154,9 @@
       cursor: pointer;
       transition: all 0.3s ease;
       border-radius: 0.5rem;
+      /* Fix for click area issue by ensuring it's on top */
+      position: relative;
+      z-index: 1100;
     }
     
     .mobile-menu-btn:hover,
@@ -237,7 +241,7 @@
       outline-offset: 2px;
     }
     
-    /* Content spacer to prevent overlap */
+    /* Content spacer to prevent overlap with sticky header */
     .header-spacer {
       height: 7rem;
     }
@@ -254,12 +258,12 @@
         justify-content: center;
       }
       
-      .header-spacer {
-        height: 5rem;
+      .header-logo {
+        height: 4rem; /* Adjusted logo for mobile */
       }
-      
-      header.sticky.shrink .header-spacer {
-        height: 4rem;
+
+      .header-spacer {
+        height: 5rem; /* Match mobile header height */
       }
     }
     
@@ -291,8 +295,12 @@
     .swiper-slide {
       background-position: center;
       background-size: cover;
-      width: 320px;
-      height: 420px;
+      /* Responsive slide dimensions */
+      width: 85%;
+      max-width: 340px;
+      height: auto; /* Auto height based on content */
+      min-height: 420px; /* Maintain a consistent minimum height */
+      display: flex; /* Added for flex child to grow */
     }
 
     .swiper-button-next, .swiper-button-prev {
@@ -328,11 +336,11 @@
 
   <!-- Enhanced Sticky Shrinking Header -->
   <header class="w-full sticky" role="banner">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 md:py-2 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
         <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
-             class="header-logo h-20 w-auto rounded-lg shadow transition-all duration-300" />
+             class="header-logo h-20 md:h-20 w-auto rounded-lg shadow transition-all duration-300" />
       </a>
       
       <!-- Desktop Navigation -->
@@ -438,9 +446,9 @@
 
   <!-- Footer -->
   <footer class="w-full bg-overlay border-t mt-auto">
-    <div class="max-w-7xl mx-auto py-6 px-4 flex flex-col md:flex-row items-center justify-between text-gray-200 text-sm">
+    <div class="max-w-7xl mx-auto py-6 px-4 flex flex-col md:flex-row items-center justify-between text-center md:text-left text-gray-200 text-sm">
       <div>© 2025 Stowarzyszenie Wolnej Myśli. Wszelkie prawa zastrzeżone.</div>
-      <div class="mt-2 md:mt-0">
+      <div class="mt-4 md:mt-0">
         <a href="aktualnosci.html" class="hover:text-red-700 mx-2 text-hero">Aktualności</a>
         <a href="projekty.html" class="hover:text-red-700 mx-2 text-hero">Projekty</a>
         <a href="statut.html" class="hover:text-red-700 mx-2 text-hero">Statut</a>
