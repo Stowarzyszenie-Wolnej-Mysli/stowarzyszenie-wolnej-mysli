@@ -257,13 +257,45 @@
         list-style-position: inside;
         padding-left: 1rem;
     }
+
+    /* Table of Contents Styles */
+    .toc-container ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .toc-container > ul > li {
+        font-weight: bold;
+        margin-top: 0.75rem;
+    }
+    .toc-container ul ul {
+        list-style: none;
+        padding-left: 1.5rem;
+        margin-top: 0.5rem;
+    }
+    .toc-container ul ul li {
+        font-weight: normal;
+        margin-top: 0.25rem;
+    }
+    .toc-container a {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.2s;
+        display: inline-block;
+        padding: 0.2rem 0;
+    }
+    .toc-container a:hover,
+    .toc-container a:focus {
+        color: #b71c1c;
+        text-decoration: underline;
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
   <!-- Enhanced Sticky Shrinking Header -->
   <header class="w-full sticky" role="banner">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
+    <!-- Header container with adjusted padding for mobile -->
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-4 py-4 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
         <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
@@ -313,23 +345,78 @@
   <!-- Main Content -->
   <main class="flex-grow">
     <section id="statut-content" class="max-w-7xl mx-auto py-12 px-4">
-      <h2 class="text-3xl font-bold text-hero mb-8 text-center"><span class="bg-overlay">Statut Stowarzyszenia</span></h2>
+      <h2 class="text-3xl font-bold text-hero mb-8 text-center"><span class="bg-overlay">Statut Stowarzyszenia Wolnej Myśli</span></h2>
       <div class="card-bg p-6 md:p-10 text-gray-800 statut-content">
         
-        <h3 class="text-2xl font-bold mt-6 mb-4">ROZDZIAŁ I - POSTANOWIENIA OGÓLNE</h3>
+        <!-- Table of Contents -->
+        <h3 class="text-2xl font-bold mb-4">Spis treści</h3>
+        <div class="toc-container mb-8">
+            <ul>
+                <li><a href="#rozdzial-1">ROZDZIAŁ I - POSTANOWIENIA OGÓLNE</a>
+                    <ul>
+                        <li><a href="#paragraf-1">§ 1. Nazwa i siedziba</a></li>
+                        <li><a href="#paragraf-2">§ 2. Podstawy prawne</a></li>
+                        <li><a href="#paragraf-3">§ 3. Cele Stowarzyszenia</a></li>
+                        <li><a href="#paragraf-4">§ 4. Sposoby realizacji celów</a></li>
+                    </ul>
+                </li>
+                <li><a href="#rozdzial-2">ROZDZIAŁ II - CZŁONKOWIE</a>
+                    <ul>
+                        <li><a href="#paragraf-5">§ 5. Rodzaje członkostwa</a></li>
+                        <li><a href="#paragraf-6">§ 6. Członkowie zwyczajni</a></li>
+                        <li><a href="#paragraf-7">§ 7. Członkowie wspierający</a></li>
+                        <li><a href="#paragraf-8">§ 8. Członkowie honorowi</a></li>
+                        <li><a href="#paragraf-9">§ 9. Utrata członkostwa</a></li>
+                    </ul>
+                </li>
+                <li><a href="#rozdzial-3">ROZDZIAŁ III - WŁADZE STOWARZYSZENIA</a>
+                    <ul>
+                        <li><a href="#paragraf-10">§ 10. Władze Stowarzyszenia</a></li>
+                        <li><a href="#paragraf-11">§ 11. Walne Zebranie Członków</a></li>
+                        <li><a href="#paragraf-12">§ 12. Uchwały Walnego Zebrania</a></li>
+                        <li><a href="#paragraf-13">§ 13. Zarząd</a></li>
+                        <li><a href="#paragraf-14">§ 14. Komisja Rewizyjna</a></li>
+                        <li><a href="#paragraf-15">§ 15. Reprezentacja Stowarzyszenia</a></li>
+                    </ul>
+                </li>
+                <li><a href="#rozdzial-4">ROZDZIAŁ IV - MAJĄTEK I GOSPODARKA FINANSOWA</a>
+                    <ul>
+                        <li><a href="#paragraf-16">§ 16. Majątek Stowarzyszenia</a></li>
+                        <li><a href="#paragraf-17">§ 17. Składki członkowskie</a></li>
+                        <li><a href="#paragraf-18">§ 18. Zasady gospodarki finansowej</a></li>
+                    </ul>
+                </li>
+                <li><a href="#rozdzial-5">ROZDZIAŁ V - OCHRONA PRAW CZŁONKÓW</a>
+                    <ul>
+                        <li><a href="#paragraf-19">§ 19. Gwarancje prawne</a></li>
+                        <li><a href="#paragraf-20">§ 20. Procedury ochronne</a></li>
+                    </ul>
+                </li>
+                <li><a href="#rozdzial-6">ROZDZIAŁ VI - POSTANOWIENIA KOŃCOWE</a>
+                    <ul>
+                        <li><a href="#paragraf-21">§ 21. Zmiana statutu</a></li>
+                        <li><a href="#paragraf-22">§ 22. Rozwiązanie Stowarzyszenia</a></li>
+                        <li><a href="#paragraf-23">§ 23. Postanowienia końcowe</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <hr class="my-8 border-gray-300">
+
+        <h3 id="rozdzial-1" class="text-2xl font-bold mt-6 mb-4">ROZDZIAŁ I - POSTANOWIENIA OGÓLNE</h3>
         
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 1. Nazwa i siedziba</h4>
+        <h4 id="paragraf-1" class="text-xl font-semibold mt-4 mb-2">§ 1. Nazwa i siedziba</h4>
         <p>1. Stowarzyszenie nosi nazwę: "Stowarzyszenie Wolnej Myśli", zwane dalej "Stowarzyszeniem".</p>
         <p>2. Siedzibą Stowarzyszenia jest Warszawska 133, 05-092 Łomianki, Polska.</p>
         <p>3. Terenem działania Stowarzyszenia jest Rzeczpospolita Polska.</p>
         <p>4. Dla realizacji celów statutowych Stowarzyszenie może prowadzić działalność na terenie innych państw z poszanowaniem tamtejszego prawa.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 2. Podstawy prawne</h4>
+        <h4 id="paragraf-2" class="text-xl font-semibold mt-4 mb-2">§ 2. Podstawy prawne</h4>
         <p>1. Stowarzyszenie działa na podstawie ustawy z dnia 7 kwietnia 1989 r. Prawo o stowarzyszeniach (tekst jedn. Dz.U. z 2020 r. poz. 2261 z późn. zm.) oraz niniejszego statutu.</p>
         <p>2. Stowarzyszenie posiada osobowość prawną i jest zawiązane na czas nieograniczony.</p>
         <p>3. Stowarzyszenie podlega wpisowi do Krajowego Rejestru Sądowego.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 3. Cele Stowarzyszenia</h4>
+        <h4 id="paragraf-3" class="text-xl font-semibold mt-4 mb-2">§ 3. Cele Stowarzyszenia</h4>
         <p>Celem Stowarzyszenia jest:</p>
         <ul>
           <li>a) wspieranie i ochrona wolności myśli, słowa i przekonań w ramach obowiązującego prawa;</li>
@@ -340,7 +427,7 @@
           <li>f) działalność kulturalna i oświatowa promująca swobodę wypowiedzi.</li>
         </ul>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 4. Sposoby realizacji celów</h4>
+        <h4 id="paragraf-4" class="text-xl font-semibold mt-4 mb-2">§ 4. Sposoby realizacji celów</h4>
         <p>Stowarzyszenie realizuje swoje cele poprzez:</p>
         <ul>
           <li>a) organizację konferencji, seminariów i wykładów;</li>
@@ -353,9 +440,9 @@
           <li>h) działalność rzeczniczą w zakresie ochrony praw obywatelskich.</li>
         </ul>
 
-        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ II - CZŁONKOWIE</h3>
+        <h3 id="rozdzial-2" class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ II - CZŁONKOWIE</h3>
         
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 5. Rodzaje członkostwa</h4>
+        <h4 id="paragraf-5" class="text-xl font-semibold mt-4 mb-2">§ 5. Rodzaje członkostwa</h4>
         <p>Członkowie Stowarzyszenia dzielą się na:</p>
         <ul>
           <li>a) członków zwyczajnych;</li>
@@ -363,7 +450,7 @@
           <li>c) członków honorowych.</li>
         </ul>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 6. Członkowie zwyczajni</h4>
+        <h4 id="paragraf-6" class="text-xl font-semibold mt-4 mb-2">§ 6. Członkowie zwyczajni</h4>
         <p>1. Członkiem zwyczajnym może być osoba fizyczna, która:</p>
         <ul>
             <li>a) posiada pełną zdolność do czynności prawnych;</li>
@@ -390,7 +477,7 @@
             <li>e) przestrzegania zasad etycznych i przepisów prawa.</li>
         </ul>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 7. Członkowie wspierający</h4>
+        <h4 id="paragraf-7" class="text-xl font-semibold mt-4 mb-2">§ 7. Członkowie wspierający</h4>
         <p>1. Członkiem wspierającym może być osoba fizyczna lub prawna, która deklaruje wsparcie celów Stowarzyszenia.</p>
         <p>2. Członek wspierający ma prawo do:</p>
         <ul>
@@ -400,12 +487,12 @@
         </ul>
         <p>3. Członek wspierający ma obowiązek przestrzegania statutu i opłacania składek w wysokości ustalonej przez Zarząd.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 8. Członkowie honorowi</h4>
+        <h4 id="paragraf-8" class="text-xl font-semibold mt-4 mb-2">§ 8. Członkowie honorowi</h4>
         <p>1. Członkiem honorowym może być osoba fizyczna, która wniosła wybitny wkład w działalność i rozwój Stowarzyszenia.</p>
         <p>2. Członkostwo honorowe nadaje Walne Zebranie Członków na wniosek Zarządu większością 2/3 głosów.</p>
         <p>3. Członek honorowy ma prawa członka zwyczajnego i jest zwolniony z opłacania składek członkowskich.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 9. Utrata członkostwa</h4>
+        <h4 id="paragraf-9" class="text-xl font-semibold mt-4 mb-2">§ 9. Utrata członkostwa</h4>
         <p>1. Członkostwo ustaje w przypadku:</p>
         <ul>
             <li>a) dobrowolnego wystąpienia potwierdzonego pisemnie;</li>
@@ -422,9 +509,9 @@
         <p>2. O wykluczeniu członka decyduje Zarząd większością 2/3 głosów przy obecności co najmniej połowy składu.</p>
         <p>3. Od decyzji o wykluczeniu przysługuje odwołanie do Walnego Zebrania Członków w terminie 30 dni.</p>
 
-        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ III - WŁADZE STOWARZYSZENIA</h3>
+        <h3 id="rozdzial-3" class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ III - WŁADZE STOWARZYSZENIA</h3>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 10. Władze Stowarzyszenia</h4>
+        <h4 id="paragraf-10" class="text-xl font-semibold mt-4 mb-2">§ 10. Władze Stowarzyszenia</h4>
         <p>Władzami Stowarzyszenia są:</p>
         <ul>
             <li>a) Walne Zebranie Członków;</li>
@@ -432,7 +519,7 @@
             <li>c) Komisja Rewizyjna.</li>
         </ul>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 11. Walne Zebranie Członków</h4>
+        <h4 id="paragraf-11" class="text-xl font-semibold mt-4 mb-2">§ 11. Walne Zebranie Członków</h4>
         <p>1. Walne Zebranie Członków jest najwyższą władzą Stowarzyszenia.</p>
         <p>2. W Walnym Zebraniu uczestniczą członkowie zwyczajni z prawem głosu oraz członkowie wspierający i honorowi z prawem głosu doradczego.</p>
         <p>3. Do kompetencji Walnego Zebrania należy:</p>
@@ -457,7 +544,7 @@
         <p>7. Walne Zebranie jest prawomocne przy obecności co najmniej 1/3 członków uprawnionych do głosowania.</p>
         <p>8. W przypadku braku kworum, drugie zebranie (po 30 minutach) jest prawomocne bez względu na liczbę obecnych.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 12. Uchwały Walnego Zebrania</h4>
+        <h4 id="paragraf-12" class="text-xl font-semibold mt-4 mb-2">§ 12. Uchwały Walnego Zebrania</h4>
         <p>1. Uchwały zapadają zwykłą większością głosów, za wyjątkiem:</p>
         <ul>
             <li>a) zmiany statutu - wymagana większość 2/3 głosów;</li>
@@ -467,7 +554,7 @@
         <p>2. Głosowanie jest jawne, z wyjątkiem wyborów do władz i spraw osobowych.</p>
         <p>3. Członkowie mogą uczestniczyć w Walnym Zebraniu przy wykorzystaniu środków komunikacji elektronicznej, jeśli statut nie stanowi inaczej.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 13. Zarząd</h4>
+        <h4 id="paragraf-13" class="text-xl font-semibold mt-4 mb-2">§ 13. Zarząd</h4>
         <p>1. Zarząd składa się z 3 do 7 członków wybieranych przez Walne Zebranie na kadencję 3 lat.</p>
         <p>2. Zarząd wybiera ze swojego grona Prezesa, Wiceprezesa i Skarbnika.</p>
         <p>3. Członkiem Zarządu może być wyłącznie członek zwyczajny Stowarzyszenia.</p>
@@ -487,7 +574,7 @@
         <p>6. Posiedzenia Zarządu odbywają się co najmniej raz na kwartał.</p>
         <p>7. Posiedzenia zwołuje Prezes lub dwóch członków Zarządu.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 14. Komisja Rewizyjna</h4>
+        <h4 id="paragraf-14" class="text-xl font-semibold mt-4 mb-2">§ 14. Komisja Rewizyjna</h4>
         <p>1. Komisja Rewizyjna składa się z 3 członków wybieranych przez Walne Zebranie na kadencję 3 lat.</p>
         <p>2. Komisja wybiera ze swojego grona Przewodniczącego.</p>
         <p>3. Członkowie Komisji Rewizyjnej nie mogą być członkami Zarządu ani pozostawać z nimi w związku małżeńskim lub pokrewieństwa do 2 stopnia.</p>
@@ -501,15 +588,15 @@
         </ul>
         <p>5. Komisja Rewizyjna ma prawo żądania od Zarządu dokumentów, wyjaśnień i informacji.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 15. Reprezentacja Stowarzyszenia</h4>
+        <h4 id="paragraf-15" class="text-xl font-semibold mt-4 mb-2">§ 15. Reprezentacja Stowarzyszenia</h4>
         <p>1. Stowarzyszenie reprezentuje Prezes działający jednoosobowo.</p>
         <p>2. W przypadku nieobecności Prezesa, Stowarzyszenie reprezentuje Wiceprezes.</p>
         <p>3. Do zaciągania zobowiązań majątkowych powyżej kwoty 10.000 zł wymagane są podpisy dwóch członków Zarządu.</p>
         <p>4. Zarząd może udzielić pełnomocnictw do reprezentowania Stowarzyszenia w określonych sprawach.</p>
 
-        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ IV - MAJĄTEK I GOSPODARKA FINANSOWA</h3>
+        <h3 id="rozdzial-4" class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ IV - MAJĄTEK I GOSPODARKA FINANSOWA</h3>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 16. Majątek Stowarzyszenia</h4>
+        <h4 id="paragraf-16" class="text-xl font-semibold mt-4 mb-2">§ 16. Majątek Stowarzyszenia</h4>
         <p>1. Majątek Stowarzyszenia powstaje z:</p>
         <ul>
             <li>a) składek członkowskich;</li>
@@ -523,22 +610,22 @@
         <p>2. Stowarzyszenie może prowadzić działalność gospodarczą w zakresie służącym realizacji celów statutowych.</p>
         <p>3. Dochód z działalności gospodarczej służy wyłącznie realizacji celów statutowych i nie może być przeznaczony do podziału między członków.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 17. Składki członkowskie</h4>
+        <h4 id="paragraf-17" class="text-xl font-semibold mt-4 mb-2">§ 17. Składki członkowskie</h4>
         <p>1. Wysokość składek członkowskich ustala Walne Zebranie Członków na wniosek Zarządu.</p>
         <p>2. Członkowie zwyczajni opłacają składki w wysokości ustalonej przez Walne Zebranie.</p>
         <p>3. Członkowie wspierający opłacają składki w wysokości ustalonej przez Zarząd.</p>
         <p>4. Członkowie honorowi są zwolnieni z opłacania składek.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 18. Zasady gospodarki finansowej</h4>
+        <h4 id="paragraf-18" class="text-xl font-semibold mt-4 mb-2">§ 18. Zasady gospodarki finansowej</h4>
         <p>1. Rok obrotowy jest równy rokowi kalendarzowemu.</p>
         <p>2. Za gospodarkę finansową odpowiada Zarząd.</p>
         <p>3. Środki finansowe przechowuje się na rachunkach bankowych.</p>
         <p>4. Sprawozdania finansowe podlegają kontroli Komisji Rewizyjnej i zatwierdzeniu przez Walne Zebranie.</p>
         <p>5. Księgi rachunkowe prowadzi się zgodnie z przepisami o rachunkowości.</p>
 
-        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ V - OCHRONA PRAW CZŁONKÓW</h3>
+        <h3 id="rozdzial-5" class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ V - OCHRONA PRAW CZŁONKÓW</h3>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 19. Gwarancje prawne</h4>
+        <h4 id="paragraf-19" class="text-xl font-semibold mt-4 mb-2">§ 19. Gwarancje prawne</h4>
         <p>1. Stowarzyszenie w ramach swoich możliwości zapewnia członkom:</p>
         <ul>
             <li>a) wsparcie w zakresie edukacji prawnej;</li>
@@ -548,7 +635,7 @@
         </ul>
         <p>2. Stowarzyszenie może udzielać pomocy prawnej członkom w sprawach związanych z realizacją celów statutowych, w ramach posiadanych środków i możliwości.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 20. Procedury ochronne</h4>
+        <h4 id="paragraf-20" class="text-xl font-semibold mt-4 mb-2">§ 20. Procedury ochronne</h4>
         <p>1. W przypadku naruszeń praw członków związanych z działalnością statutową, Stowarzyszenie może:</p>
         <ul>
             <li>a) interweniować u odpowiednich organów;</li>
@@ -558,9 +645,9 @@
         </ul>
         <p>2. Wszelkie działania Stowarzyszenia prowadzone są w granicach prawa i zgodnie z procedurami demokratycznego państwa prawnego.</p>
 
-        <h3 class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ VI - POSTANOWIENIA KOŃCOWE</h3>
+        <h3 id="rozdzial-6" class="text-2xl font-bold mt-8 mb-4">ROZDZIAŁ VI - POSTANOWIENIA KOŃCOWE</h3>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 21. Zmiana statutu</h4>
+        <h4 id="paragraf-21" class="text-xl font-semibold mt-4 mb-2">§ 21. Zmiana statutu</h4>
         <p>1. Zmiana statutu może nastąpić wyłącznie na podstawie uchwały Walnego Zebrania Członków podjętej większością 2/3 głosów.</p>
         <p>2. Wniosek o zmianę statutu może złożyć:</p>
         <ul>
@@ -570,7 +657,7 @@
         </ul>
         <p>3. Zarząd zawiadamia sąd rejestrowy o zmianie statutu w terminie 7 dni.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 22. Rozwiązanie Stowarzyszenia</h4>
+        <h4 id="paragraf-22" class="text-xl font-semibold mt-4 mb-2">§ 22. Rozwiązanie Stowarzyszenia</h4>
         <p>1. Stowarzyszenie ulega rozwiązaniu na podstawie uchwały Walnego Zebrania Członków podjętej większością 2/3 głosów.</p>
         <p>2. Wniosek o rozwiązanie może złożyć:</p>
         <ul>
@@ -580,7 +667,7 @@
         <p>3. Uchwała o rozwiązaniu określa sposób likwidacji i przeznaczenie majątku.</p>
         <p>4. Majątek pozostały po likwidacji przekazuje się na cele statutowe wskazane przez Walne Zebranie.</p>
 
-        <h4 class="text-xl font-semibold mt-4 mb-2">§ 23. Postanowienia końcowe</h4>
+        <h4 id="paragraf-23" class="text-xl font-semibold mt-4 mb-2">§ 23. Postanowienia końcowe</h4>
         <p>1. W sprawach nieuregulowanych niniejszym statutem stosuje się przepisy ustawy Prawo o stowarzyszeniach oraz inne właściwe przepisy prawa.</p>
         <p>2. Regulamin organizacyjny może określać szczegółowe zasady funkcjonowania Stowarzyszenia.</p>
         <p>3. Niniejszy statut wchodzi w życie z dniem rejestracji Stowarzyszenia w Krajowym Rejestrze Sądowym.</p>
@@ -701,15 +788,23 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const headerHeight = document.querySelector('header').offsetHeight;
-          const targetPosition = target.offsetTop - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
+        const targetId = this.getAttribute('href');
+        
+        // Special case for links to other pages with hashes
+        if (targetId.startsWith('#') && window.location.pathname.includes('statut.html')) {
+            const target = document.querySelector(targetId);
+            if (target) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        } else if (targetId.startsWith('#')) {
+            // If on another page, navigate and then scroll
+            window.location.href = `index.html${targetId}`;
         }
       });
     });
