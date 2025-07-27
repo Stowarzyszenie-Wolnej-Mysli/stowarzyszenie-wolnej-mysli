@@ -193,13 +193,37 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 3rem;
     }
     
-    .project-content .text-content {
-        max-width: 900px; /* Keep text readable */
+    .project-image-container {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 2rem;
+    }
+    
+    .project-image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .project-text-container {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto;
+        padding: 2rem;
+    }
+
+    .text-content-wrapper {
+        max-width: 900px;
     }
 
     /* Navigation Arrows */
@@ -270,7 +294,8 @@
       .desktop-nav { display: none; }
       .mobile-menu-btn { display: flex; }
       .project-slide { padding: 1rem; }
-      .project-content { padding: 1.5rem; }
+      .project-content { padding: 1rem; }
+      .project-image-container, .project-text-container { padding: 1rem; }
       .carousel-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
       #prev-btn { left: 1rem; }
       #next-btn { right: 1rem; }
@@ -292,7 +317,7 @@
         <!-- Desktop Navigation -->
         <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
           <a href="aktualnosci.html" class="nav-link">Aktualności</a>
-          <a href="projekty.html" class="nav-link active">Projekty</a>
+          <a href="projekty.html" class="nav-link">Projekty</a>
           <a href="statut.html" class="nav-link">Statut</a>
           <a href="index.html#zarzad" class="nav-link">Zarząd</a>
           <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
@@ -332,24 +357,32 @@
         <!-- Project 1 Slide -->
         <div class="project-slide">
             <div class="project-content">
-                <div class="text-content">
-                    <img src="Projekt 1.svg" alt="Projekt Grupy Krwi" class="mx-auto mb-6 h-40 md:h-48 w-auto rounded-lg shadow-lg">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Obowiązkowe Oznaczenie Grupy Krwi na Dowodzie Osobistym</h2>
-                    <p class="text-lg md:text-xl">
-                        Szczegółowa analiza modeli międzynarodowych, w których takie rozwiązanie już funkcjonuje. Badanie potencjalnych korzyści dla polskiego systemu opieki zdrowotnej, w tym skrócenia czasu oczekiwania na transfuzję krwi w nagłych wypadkach i zwiększenia bezpieczeństwa pacjentów.
-                    </p>
+                <div class="project-image-container">
+                    <img src="Projekt 1.svg" alt="Projekt Grupy Krwi">
+                </div>
+                <div class="project-text-container">
+                    <div class="text-content-wrapper">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Obowiązkowe Oznaczenie Grupy Krwi na Dowodzie Osobistym</h2>
+                        <p class="text-lg md:text-xl">
+                            Szczegółowa analiza modeli międzynarodowych, w których takie rozwiązanie już funkcjonuje. Badanie potencjalnych korzyści dla polskiego systemu opieki zdrowotnej, w tym skrócenia czasu oczekiwania na transfuzję krwi w nagłych wypadkach i zwiększenia bezpieczeństwa pacjentów.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Project 2 Slide -->
         <div class="project-slide">
             <div class="project-content">
-                <div class="text-content">
-                    <img src="Projekt 2.svg" alt="Projekt Konopi" class="mx-auto mb-6 h-40 md:h-48 w-auto rounded-lg shadow-lg">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jakość Życia i Zdrowie w Kontekście Stosowania Konopi</h2>
-                    <p class="text-lg md:text-xl">
-                        Kompleksowe badanie wpływu stosowania konopi na zdrowie publiczne. Analiza potencjalnych negatywnych skutków zdrowotnych i społecznych, a także badanie korzyści terapeutycznych. Celem jest opracowanie rekomendacji dla świadomych i opartych na dowodach naukowych regulacji prawnych.
-                    </p>
+                <div class="project-image-container">
+                    <img src="Projekt 2.svg" alt="Projekt Konopi">
+                </div>
+                <div class="project-text-container">
+                    <div class="text-content-wrapper">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Jakość Życia i Zdrowie w Kontekście Stosowania Konopi</h2>
+                        <p class="text-lg md:text-xl">
+                            Kompleksowe badanie wpływu stosowania konopi na zdrowie publiczne. Analiza potencjalnych negatywnych skutków zdrowotnych i społecznych, a także badanie korzyści terapeutycznych. Celem jest opracowanie rekomendacji dla świadomych i opartych na dowodach naukowych regulacji prawnych.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
