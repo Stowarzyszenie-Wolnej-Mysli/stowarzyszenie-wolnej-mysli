@@ -87,6 +87,11 @@
       box-shadow: 0 4px 20px 0 rgba(0,0,0,0.15);
     }
     
+    .header-logo {
+        height: 5rem; /* Default height */
+        transition: height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
     header.sticky.shrink .header-logo {
       height: 3rem;
     }
@@ -293,13 +298,13 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- Enhanced Sticky Shrinking Header -->
-  <header class="w-full sticky" role="banner">
+  <header class="sticky" role="banner">
     <!-- Header container with adjusted padding for mobile -->
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-4 py-4 header-content relative">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
         <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
-             class="header-logo h-20 w-auto rounded-lg shadow transition-all duration-300" />
+             class="header-logo rounded-lg shadow transition-all duration-300" />
       </a>
       
       <!-- Desktop Navigation -->
