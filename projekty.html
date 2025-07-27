@@ -297,16 +297,15 @@
       .mobile-menu-btn { display: flex; }
       
       /* === AESTHETIC FIX === */
-      /* Add padding to the slide container itself, not the content. */
-      /* This creates a clean visual separation from the bottom nav. */
-      .project-slide { 
-        padding: 1rem; 
+      /* Add padding to the main carousel wrapper to make space for the thumbnail nav */
+      .carousel-wrapper {
         padding-bottom: 85px; /* Space for thumbnail nav */
+        box-sizing: border-box;
       }
       
-      /* Remove the old padding fix from the content box */
-      .project-content {
-        padding-bottom: 0; 
+      /* Reset padding on the individual slide */
+      .project-slide { 
+        padding: 1rem; 
       }
 
       .project-image-container {
@@ -425,10 +424,6 @@
 
   <!-- JavaScript for all functionality -->
   <script>
-    // SYNTAX ERROR FIX: Removed the 'DOMContentLoaded' event listener wrapper.
-    // Since the script is at the end of the <body>, the DOM is already loaded,
-    // making the listener unnecessary and a potential source of errors.
-
     // --- Header Shrink ---
     const header = document.querySelector('header.sticky');
     function updateHeader() {
