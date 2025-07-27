@@ -3,64 +3,460 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projekty | Stowarzyszenie Wolnej Myśli</title>
+  <title>Projekty - Stowarzyszenie Wolnej Myśli</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body {
-      font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
-      background: url('flaga.svg') no-repeat center center fixed;
-      background-size: cover;
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent body scroll */
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      background: #f7f7f7;
     }
-    .glass {
-      background: rgba(255,255,255,0.80);
-      backdrop-filter: blur(12px) saturate(1.2);
-      border-radius: 2rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-      border: 1.5px solid rgba(255,255,255,0.25);
+    
+    .main-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .red { color: #D32F2F; }
-    .bg-red-main { background: linear-gradient(90deg, #D32F2F 0%, #b71c1c 100%); }
-    .hover\:bg-red-dark:hover { background: linear-gradient(90deg, #b71c1c 0%, #D32F2F 100%); }
-    .icon-btn i { margin-right: 0.5em; }
-    .transition { transition: all 0.2s cubic-bezier(.4,0,.2,1); }
+
+    .bg-overlay {
+      background: rgba(0,0,0,0.28);
+      border-radius: 1rem;
+      padding: 0.3em 1em;
+      display: inline-block;
+    }
+    
+    .btn-main {
+      background: rgba(211,47,47,0.95);
+      color: #fff;
+      font-weight: bold;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    
+    .btn-main:hover, .btn-main:focus {
+      background: rgba(183,28,28,0.95);
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      transform: translateY(-1px);
+    }
+
+    /* Enhanced Sticky Header */
+    header.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    header.sticky.shrink {
+      padding: 0.5rem 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px 0 rgba(0,0,0,0.15);
+    }
+    
+    .header-logo {
+      height: 4rem;
+      transition: height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    
+    header.sticky.shrink .header-logo {
+      height: 3rem;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    .mobile-nav.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .mobile-nav a {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active {
+      color: #D32F2F;
+      background: rgba(255,255,255,0.1);
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+    
+    /* Carousel Styles */
+    .carousel-wrapper {
+        flex-grow: 1;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+    .carousel-container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    
+    .project-slide {
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem; /* Space from viewport edges */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .project-content {
+        position: relative;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+    }
+    
+    .project-content .text-content {
+        max-width: 900px; /* Keep text readable */
+    }
+
+    /* Navigation Arrows */
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .carousel-arrow:hover {
+        background: rgba(211, 47, 47, 0.8);
+        transform: translateY(-50%) scale(1.1);
+    }
+    #prev-btn { left: 2rem; }
+    #next-btn { right: 2rem; }
+
+    /* Thumbnail Navigation */
+    .thumbnail-nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    }
+    .thumbnail {
+        width: 120px;
+        height: 70px;
+        margin: 0 0.5rem;
+        border-radius: 0.5rem;
+        border: 2px solid transparent;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    .thumbnail:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .thumbnail.active {
+        border-color: #D32F2F;
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .project-slide { padding: 1rem; }
+      .project-content { padding: 1.5rem; }
+      .carousel-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+      #prev-btn { left: 1rem; }
+      #next-btn { right: 1rem; }
+      .thumbnail { width: 80px; height: 50px; }
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center">
+<body>
+  <div class="main-container">
+    <!-- Enhanced Sticky Shrinking Header -->
+    <header class="sticky" role="banner">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
+        <!-- Logo -->
+        <a href="index.html" class="flex-shrink-0">
+          <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
+               class="header-logo rounded-lg shadow transition-all duration-300" />
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
+          <a href="aktualnosci.html" class="nav-link">Aktualności</a>
+          <a href="projekty.html" class="nav-link active">Projekty</a>
+          <a href="statut.html" class="nav-link">Statut</a>
+          <a href="index.html#zarzad" class="nav-link">Zarząd</a>
+          <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button 
+          class="mobile-menu-btn" 
+          id="mobile-menu-btn" 
+          aria-label="Otwórz menu nawigacyjne"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        
+        <!-- Mobile Navigation -->
+        <nav 
+          class="mobile-nav" 
+          id="mobile-nav" 
+          role="navigation" 
+          aria-label="Menu mobilne"
+          aria-hidden="true"
+        >
+          <a href="aktualnosci.html">Aktualności</a>
+          <a href="projekty.html">Projekty</a>
+          <a href="statut.html">Statut</a>
+          <a href="index.html#zarzad">Zarząd</a>
+          <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg text-center">Wesprzyj nas</a>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Main Content - Projects Carousel -->
+    <main class="carousel-wrapper">
+      <div class="carousel-container" id="carousel-container">
+        <!-- Project 1 Slide -->
+        <div class="project-slide" style="background-image: url('Projekt 1.svg');">
+            <div class="project-content">
+                <div class="text-content">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Obowiązkowe Oznaczenie Grupy Krwi na Dowodzie Osobistym</h2>
+                    <p class="text-lg md:text-xl">
+                        Szczegółowa analiza modeli międzynarodowych, w których takie rozwiązanie już funkcjonuje. Badanie potencjalnych korzyści dla polskiego systemu opieki zdrowotnej, w tym skrócenia czasu oczekiwania na transfuzję krwi w nagłych wypadkach i zwiększenia bezpieczeństwa pacjentów.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Project 2 Slide -->
+        <div class="project-slide" style="background-image: url('Projekt 2.svg');">
+            <div class="project-content">
+                <div class="text-content">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jakość Życia i Zdrowie w Kontekście Stosowania Konopi</h2>
+                    <p class="text-lg md:text-xl">
+                        Kompleksowe badanie wpływu stosowania konopi na zdrowie publiczne. Analiza potencjalnych negatywnych skutków zdrowotnych i społecznych, a także badanie korzyści terapeutycznych. Celem jest opracowanie rekomendacji dla świadomych i opartych na dowodach naukowych regulacji prawnych.
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
 
-  <header class="glass w-full max-w-2xl mt-10 mb-6 flex flex-col items-center px-8 py-8 shadow-lg">
-    <a href="index.html" class="block mb-4 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-xl">
-      <img src="logo.svg" alt="Stowarzyszenie Wolnej Myśli" class="h-28 w-auto object-contain rounded-xl shadow-md border-4 border-white transition hover:scale-105" />
-    </a>
-    <h1 class="text-4xl font-extrabold text-center red tracking-tight mb-2 drop-shadow">
-      STOWARZYSZENIE WOLNEJ MYŚLI
-    </h1>
-    <p class="text-lg text-gray-700 text-center max-w-lg mt-2">
-      Promujemy otwarty dialog i krytyczne myślenie. Wspieramy wolność intelektualną, racjonalny dyskurs i prawo do niezależnego myślenia bez dogmatów i cenzury.
-    </p>
-  </header>
+      <!-- Navigation Arrows -->
+      <button id="prev-btn" class="carousel-arrow" aria-label="Poprzedni projekt"><i class="fas fa-chevron-left"></i></button>
+      <button id="next-btn" class="carousel-arrow" aria-label="Następny projekt"><i class="fas fa-chevron-right"></i></button>
 
-  <main class="glass w-full max-w-2xl mb-10 px-8 py-8 flex flex-col items-center text-center shadow-lg">
-    <h2 class="text-2xl font-bold red mb-5"><i class="fa-solid fa-lightbulb"></i> Projekty</h2>
-    <p class="text-gray-700 mb-6">
-      Poznaj nasze inicjatywy i działania na rzecz wolnej myśli!
-    </p>
-    <ul class="text-left text-gray-800 mb-8 space-y-4">
-      <li><strong>🧠 Klub Dyskusyjny:</strong> Regularne spotkania otwarte dla wszystkich zainteresowanych racjonalnym dialogiem.</li>
-      <li><strong>📚 Warsztaty Krytycznego Myślenia:</strong> Szkolenia i prelekcje dla młodzieży i dorosłych.</li>
-      <li><strong>🌐 Platforma Online:</strong> Forum wymiany myśli i doświadczeń bez cenzury.</li>
-      <li><strong>🎙️ Podcast "Myśl Wolna":</strong> Rozmowy z ekspertami i ciekawymi gośćmi.</li>
-    </ul>
-    <div class="flex flex-wrap justify-center gap-4 mt-2">
-      <a href="kontakt.html" class="icon-btn bg-red-main text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:bg-red-dark transition text-base flex items-center"><i class="fa-solid fa-envelope"></i>Kontakt</a>
-      <a href="regulamin.html" class="icon-btn bg-red-main text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:bg-red-dark transition text-base flex items-center"><i class="fa-solid fa-file-contract"></i>Regulamin</a>
-      <a href="zarzad.html" class="icon-btn bg-red-main text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:bg-red-dark transition text-base flex items-center"><i class="fa-solid fa-users"></i>Zarząd</a>
-      <a href="index.html" class="icon-btn bg-red-main text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:bg-red-dark transition text-base flex items-center"><i class="fa-solid fa-home"></i>Strona główna</a>
-    </div>
-  </main>
+      <!-- Thumbnail Navigation -->
+      <div class="thumbnail-nav" id="thumbnail-nav">
+          <div class="thumbnail" data-slide="0" style="background-image: url('Projekt 1.svg');" title="Projekt Grupy Krwi"></div>
+          <div class="thumbnail" data-slide="1" style="background-image: url('Projekt 2.svg');" title="Projekt Konopi"></div>
+      </div>
+    </main>
+  </div>
 
-  <footer class="glass w-full max-w-2xl text-center text-gray-600 text-sm mb-8 py-3 shadow">
-    © 2025 Stowarzyszenie Wolnej Myśli. Nowoczesność i wolność intelektualna.
-  </footer>
+  <!-- JavaScript for all functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Header Shrink ---
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        const header = document.querySelector('header.sticky');
+        
+        function updateHeader() {
+            if (window.scrollY > 30) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }
+        
+        // This page doesn't scroll, so we only need to check on load.
+        updateHeader();
+
+        // --- Mobile Menu ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const body = document.body;
+        let menuOpen = false;
+        
+        function toggleMobileMenu() {
+            menuOpen = !menuOpen;
+            mobileNav.classList.toggle('active', menuOpen);
+            menuBtn.setAttribute('aria-expanded', menuOpen);
+            menuBtn.innerHTML = menuOpen ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-bars" aria-hidden="true"></i>';
+            body.classList.toggle('menu-open', menuOpen);
+        }
+        
+        menuBtn.addEventListener('click', toggleMobileMenu);
+
+        // --- Carousel Logic ---
+        const carousel = document.getElementById('carousel-container');
+        const slides = document.querySelectorAll('.project-slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const slideCount = slides.length;
+        let currentSlide = 0;
+
+        function goToSlide(slideIndex) {
+            if (slideIndex < 0) {
+                slideIndex = slideCount - 1;
+            } else if (slideIndex >= slideCount) {
+                slideIndex = 0;
+            }
+
+            carousel.style.transform = `translateX(-${slideIndex * 100}vw)`;
+            currentSlide = slideIndex;
+
+            // Update active thumbnail
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                goToSlide(parseInt(thumb.dataset.slide));
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                goToSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft') {
+                goToSlide(currentSlide - 1);
+            }
+        });
+
+        // Initialize first slide
+        goToSlide(0);
+    });
+  </script>
 </body>
 </html>
