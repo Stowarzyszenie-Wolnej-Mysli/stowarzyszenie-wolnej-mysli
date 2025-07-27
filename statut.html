@@ -65,8 +65,10 @@
       outline-offset: 2px;
       transform: translateY(-1px);
     }
-    
-    /* Enhanced Sticky Header */
+
+    /* --- START: Zaktualizowane style nagłówka (z projekty.html) --- */
+
+    /* Ulepszony lepki nagłówek */
     header.sticky {
       position: fixed;
       top: 0;
@@ -88,25 +90,15 @@
     }
     
     .header-logo {
-        height: 5rem; /* Default height */
-        transition: height 0.4s cubic-bezier(.4,0,.2,1);
+      height: 4rem; /* Zgodnie z projekty.html */
+      transition: height 0.4s cubic-bezier(.4,0,.2,1);
     }
-
+    
     header.sticky.shrink .header-logo {
-      height: 3rem;
+      height: 3rem; /* Zgodnie z projekty.html */
     }
     
-    header.sticky.shrink .header-content {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
-    
-    header.sticky.shrink .nav-link {
-      font-size: 0.95rem;
-      padding: 0.5rem 0.75rem;
-    }
-    
-    /* Mobile Navigation */
+    /* Nawigacja mobilna */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -118,7 +110,7 @@
       transition: all 0.3s ease;
       border-radius: 0.5rem;
     }
-    
+
     .mobile-menu-btn:hover,
     .mobile-menu-btn:focus {
       background: rgba(255,255,255,0.1);
@@ -156,7 +148,7 @@
       transition: all 0.3s ease;
       text-align: center;
     }
-    
+
     .mobile-nav a:hover,
     .mobile-nav a:focus {
       background: rgba(211,47,47,0.2);
@@ -176,7 +168,7 @@
       }
     }
     
-    /* Desktop Navigation */
+    /* Nawigacja desktopowa */
     .desktop-nav {
       display: flex;
       align-items: center;
@@ -201,12 +193,12 @@
       outline-offset: 2px;
     }
     
-    /* Content spacer to prevent overlap */
+    /* Dystans, aby treść nie nachodziła na nagłówek */
     .header-spacer {
-      height: 7rem;
+      height: 6rem; /* Dopasowano do wysokości nagłówka (4rem logo + 2rem padding) */
     }
     
-    /* Responsive breakpoints */
+    /* Media queries */
     @media (max-width: 768px) {
       .desktop-nav {
         display: none;
@@ -217,89 +209,82 @@
         align-items: center;
         justify-content: center;
       }
-      
-      .header-spacer {
-        height: 5rem;
-      }
-      
-      header.sticky.shrink .header-spacer {
-        height: 4rem;
-      }
     }
     
-    /* Prevent scrolling when mobile menu is open */
+    /* Zapobieganie przewijaniu, gdy menu mobilne jest otwarte */
     body.menu-open {
       overflow: hidden;
     }
     
-    /* Focus improvements for accessibility */
+    /* Poprawa focusu dla dostępności */
     *:focus {
       outline: 2px solid #D32F2F;
       outline-offset: 2px;
     }
     
-    /* Improved button focus states */
+    /* Ulepszone stany focus dla przycisków */
     button:focus,
     .btn-main:focus {
       outline: 2px solid #ffffff;
       outline-offset: 2px;
     }
 
-    /* Statute specific styles */
+    /* --- END: Zaktualizowane style nagłówka --- */
+
+    /* Style specyficzne dla statutu */
     .statut-content h3 {
-        color: #b71c1c;
-        border-bottom: 2px solid rgba(183,28,28,0.2);
-        padding-bottom: 0.5rem;
+      color: #b71c1c;
+      border-bottom: 2px solid rgba(183,28,28,0.2);
+      padding-bottom: 0.5rem;
     }
     .statut-content h4 {
-        color: #333;
+      color: #333;
     }
     .statut-content p, .statut-content li {
-        color: #4a5568;
-        line-height: 1.7;
+      color: #4a5568;
+      line-height: 1.7;
     }
     .statut-content ul {
-        list-style-position: inside;
-        padding-left: 1rem;
+      list-style-position: inside;
+      padding-left: 1rem;
     }
 
-    /* Table of Contents Styles */
+    /* Style spisu treści */
     .toc-container ul {
-        list-style: none;
-        padding-left: 0;
+      list-style: none;
+      padding-left: 0;
     }
     .toc-container > ul > li {
-        font-weight: bold;
-        margin-top: 0.75rem;
+      font-weight: bold;
+      margin-top: 0.75rem;
     }
     .toc-container ul ul {
-        list-style: none;
-        padding-left: 1.5rem;
-        margin-top: 0.5rem;
+      list-style: none;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
     }
     .toc-container ul ul li {
-        font-weight: normal;
-        margin-top: 0.25rem;
+      font-weight: normal;
+      margin-top: 0.25rem;
     }
     .toc-container a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.2s;
-        display: inline-block;
-        padding: 0.2rem 0;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-block;
+      padding: 0.2rem 0;
     }
     .toc-container a:hover,
     .toc-container a:focus {
-        color: #b71c1c;
-        text-decoration: underline;
+      color: #b71c1c;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Enhanced Sticky Shrinking Header -->
+  <!-- Ulepszony, lepki i zmniejszający się nagłówek -->
   <header class="sticky" role="banner">
-    <!-- Header container with adjusted padding for mobile -->
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
@@ -307,7 +292,7 @@
              class="header-logo rounded-lg shadow transition-all duration-300" />
       </a>
       
-      <!-- Desktop Navigation -->
+      <!-- Nawigacja desktopowa -->
       <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
         <a href="aktualnosci.html" class="nav-link">Aktualności</a>
         <a href="projekty.html" class="nav-link">Projekty</a>
@@ -316,7 +301,7 @@
         <a href="index.html#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
       </nav>
       
-      <!-- Mobile Menu Button -->
+      <!-- Przycisk menu mobilnego -->
       <button 
         class="mobile-menu-btn" 
         id="mobile-menu-btn" 
@@ -327,7 +312,7 @@
         <i class="fa fa-bars" aria-hidden="true"></i>
       </button>
       
-      <!-- Mobile Navigation -->
+      <!-- Nawigacja mobilna -->
       <nav 
         class="mobile-nav" 
         id="mobile-nav" 
@@ -344,16 +329,16 @@
     </div>
   </header>
   
-  <!-- Content spacer -->
+  <!-- Dystans od nagłówka -->
   <div class="header-spacer"></div>
 
-  <!-- Main Content -->
+  <!-- Główna treść -->
   <main class="flex-grow">
     <section id="statut-content" class="max-w-7xl mx-auto py-12 px-4">
       <h2 class="text-3xl font-bold text-hero mb-8 text-center"><span class="bg-overlay">Statut Stowarzyszenia Wolnej Myśli</span></h2>
       <div class="card-bg p-6 md:p-10 text-gray-800 statut-content">
         
-        <!-- Table of Contents -->
+        <!-- Spis treści -->
         <h3 class="text-2xl font-bold mb-4">Spis treści</h3>
         <div class="toc-container mb-8">
             <ul>
@@ -681,7 +666,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Stopka -->
   <footer class="w-full bg-overlay border-t mt-auto">
     <div class="max-w-7xl mx-auto py-6 px-4 flex flex-col md:flex-row items-center justify-between text-gray-200 text-sm">
       <div>© 2025 Stowarzyszenie Wolnej Myśli. Wszelkie prawa zastrzeżone.</div>
@@ -695,9 +680,9 @@
     </div>
   </footer>
 
-  <!-- Enhanced JavaScript -->
+  <!-- Zaktualizowany JavaScript -->
   <script>
-    // Enhanced shrinking sticky header with better performance
+    // Ulepszony, zmniejszający się lepki nagłówek z lepszą wydajnością
     let lastScrollY = window.scrollY;
     let ticking = false;
     
@@ -705,7 +690,8 @@
       const header = document.querySelector('header');
       const scrollY = window.scrollY;
       
-      if (scrollY > 100) {
+      // Zmieniono próg z 100 na 30, aby pasował do zachowania z projekty.html
+      if (scrollY > 30) {
         header.classList.add('shrink');
       } else {
         header.classList.remove('shrink');
@@ -724,7 +710,7 @@
     
     window.addEventListener('scroll', requestTick, { passive: true });
     
-    // Enhanced mobile menu with accessibility support
+    // Ulepszone menu mobilne z obsługą dostępności
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const body = document.body;
@@ -740,7 +726,7 @@
         menuBtn.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
         body.classList.add('menu-open');
         
-        // Focus first menu item for accessibility
+        // Ustawienie focusu na pierwszym elemencie menu dla dostępności
         const firstMenuItem = mobileNav.querySelector('a');
         if (firstMenuItem) {
           setTimeout(() => firstMenuItem.focus(), 100);
@@ -759,58 +745,58 @@
       menuOpen = false;
     }
     
-    // Event listeners
+    // Nasłuchiwanie zdarzeń
     menuBtn.addEventListener('click', toggleMobileMenu);
     
-    // Close menu when clicking on navigation links
+    // Zamykanie menu po kliknięciu w link nawigacyjny
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
     
-    // Close menu on escape key
+    // Zamykanie menu klawiszem Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && menuOpen) {
         closeMobileMenu();
-        menuBtn.focus(); // Return focus to menu button
+        menuBtn.focus(); // Zwrócenie focusu na przycisk menu
       }
     });
     
-    // Close menu when clicking outside
+    // Zamykanie menu po kliknięciu na zewnątrz
     document.addEventListener('click', (e) => {
       if (menuOpen && !menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
         closeMobileMenu();
       }
     });
     
-    // Handle window resize
+    // Obsługa zmiany rozmiaru okna
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768 && menuOpen) {
         closeMobileMenu();
       }
     });
     
-    // Enhanced smooth scrolling for anchor links
+    // Ulepszone płynne przewijanie do kotwic
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
         
-        // Special case for links to other pages with hashes
-        if (targetId.startsWith('#') && window.location.pathname.includes('statut.html')) {
+        // Sprawdzenie, czy link jest kotwicą na bieżącej stronie
+        if (targetId.startsWith('#') && document.querySelector(targetId)) {
+            e.preventDefault();
             const target = document.querySelector(targetId);
             if (target) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 20;
+                const header = document.querySelector('header.sticky');
+                const headerHeight = header ? header.offsetHeight : 0;
+                // Obliczenie pozycji docelowej z uwzględnieniem wysokości nagłówka
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
                 
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
             }
-        } else if (targetId.startsWith('#')) {
-            // If on another page, navigate and then scroll
-            window.location.href = `index.html${targetId}`;
         }
+        // Jeśli link prowadzi do kotwicy na innej stronie, pozwól na domyślną nawigację
       });
     });
   </script>
