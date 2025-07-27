@@ -106,7 +106,7 @@
       }
     }
 
-    /* Enhanced Sticky Header */
+    /* === HEADER STYLES (Copied from projekty.html for consistency) === */
     header.sticky {
       position: fixed;
       top: 0;
@@ -127,18 +127,13 @@
       box-shadow: 0 4px 20px 0 rgba(0,0,0,0.15);
     }
     
+    .header-logo {
+      height: 4rem; /* Base height */
+      transition: height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    
     header.sticky.shrink .header-logo {
-      height: 3rem;
-    }
-    
-    header.sticky.shrink .header-content {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
-    
-    header.sticky.shrink .nav-link {
-      font-size: 0.95rem;
-      padding: 0.5rem 0.75rem;
+      height: 3rem; /* Shrink height */
     }
     
     /* Mobile Navigation */
@@ -152,13 +147,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
       border-radius: 0.5rem;
-    }
-    
-    .mobile-menu-btn:hover,
-    .mobile-menu-btn:focus {
-      background: rgba(255,255,255,0.1);
-      outline: 2px solid #ffffff;
-      outline-offset: 2px;
     }
     
     .mobile-nav {
@@ -192,23 +180,9 @@
       text-align: center;
     }
     
-    .mobile-nav a:hover,
-    .mobile-nav a:focus {
-      background: rgba(211,47,47,0.2);
-      color: #D32F2F;
-      outline: 2px solid #D32F2F;
-      outline-offset: 2px;
-    }
-    
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     /* Desktop Navigation */
@@ -235,10 +209,10 @@
       outline: 2px solid #ffffff;
       outline-offset: 2px;
     }
-    
+
     /* Content spacer to prevent overlap */
     .header-spacer {
-      height: 7rem;
+      height: 5.5rem; /* Adjusted to match initial header height */
     }
     
     /* Responsive breakpoints */
@@ -249,16 +223,6 @@
       
       .mobile-menu-btn {
         display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .header-spacer {
-        height: 5rem;
-      }
-      
-      header.sticky.shrink .header-spacer {
-        height: 4rem;
       }
     }
     
@@ -283,13 +247,13 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Enhanced Sticky Shrinking Header -->
-  <header class="w-full sticky" role="banner">
+  <!-- === HEADER (Copied from projekty.html for consistency) === -->
+  <header class="sticky" role="banner">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 header-content relative">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
         <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" 
-             class="header-logo h-20 w-auto rounded-lg shadow transition-all duration-300" />
+             class="header-logo rounded-lg shadow transition-all duration-300" />
       </a>
       
       <!-- Desktop Navigation -->
@@ -551,12 +515,12 @@
     // Enhanced shrinking sticky header with better performance
     let lastScrollY = window.scrollY;
     let ticking = false;
-    
+    const header = document.querySelector('header.sticky');
+
     function updateHeader() {
-      const header = document.querySelector('header');
       const scrollY = window.scrollY;
       
-      if (scrollY > 100) {
+      if (scrollY > 50) { // Shrink after a small scroll
         header.classList.add('shrink');
       } else {
         header.classList.remove('shrink');
@@ -584,30 +548,10 @@
     function toggleMobileMenu() {
       menuOpen = !menuOpen;
       
-      if (menuOpen) {
-        mobileNav.classList.add('active');
-        mobileNav.setAttribute('aria-hidden', 'false');
-        menuBtn.setAttribute('aria-expanded', 'true');
-        menuBtn.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
-        body.classList.add('menu-open');
-        
-        // Focus first menu item for accessibility
-        const firstMenuItem = mobileNav.querySelector('a');
-        if (firstMenuItem) {
-          setTimeout(() => firstMenuItem.focus(), 100);
-        }
-      } else {
-        closeMobileMenu();
-      }
-    }
-    
-    function closeMobileMenu() {
-      mobileNav.classList.remove('active');
-      mobileNav.setAttribute('aria-hidden', 'true');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
-      body.classList.remove('menu-open');
-      menuOpen = false;
+      mobileNav.classList.toggle('active', menuOpen);
+      menuBtn.setAttribute('aria-expanded', menuOpen);
+      menuBtn.innerHTML = menuOpen ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-bars" aria-hidden="true"></i>';
+      body.classList.toggle('menu-open', menuOpen);
     }
     
     // Event listeners
@@ -646,11 +590,13 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const headerHeight = document.querySelector('header').offsetHeight;
-          const targetPosition = target.offsetTop - headerHeight - 20;
+          // Use a fixed offset or calculate dynamically
+          const headerOffset = 80; // Fixed offset for the sticky header
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           
           window.scrollTo({
-            top: targetPosition,
+            top: offsetPosition,
             behavior: 'smooth'
           });
         }
