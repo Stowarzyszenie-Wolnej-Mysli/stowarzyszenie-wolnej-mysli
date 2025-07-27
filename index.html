@@ -292,27 +292,33 @@
              class="header-logo h-20 w-auto rounded-lg shadow transition-all duration-300" />
       </a>
       
-      <!-- Desktop Navigation -->
-      <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
-        <a href="aktualnosci.html" class="nav-link">Aktualności</a>
-        <a href="projekty.html" class="nav-link">Projekty</a>
-        <a href="statut.html" class="nav-link">Statut</a>
-        <a href="#zarzad" class="nav-link">Zarząd</a>
-        <a href="#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
-      </nav>
+      <!-- FIX: Navigation Wrapper for Desktop and Mobile Controls -->
+      <!-- This wrapper div groups the navigation controls. -->
+      <!-- The parent's `justify-between` now acts on the logo and this div, -->
+      <!-- which correctly positions the controls on both desktop and mobile. -->
+      <div>
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" role="navigation" aria-label="Menu główne">
+          <a href="aktualnosci.html" class="nav-link">Aktualności</a>
+          <a href="projekty.html" class="nav-link">Projekty</a>
+          <a href="statut.html" class="nav-link">Statut</a>
+          <a href="#zarzad" class="nav-link">Zarząd</a>
+          <a href="#kontakt" class="btn-main px-6 py-3 rounded-lg shadow-lg">Wesprzyj nas</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button 
+          class="mobile-menu-btn" 
+          id="mobile-menu-btn" 
+          aria-label="Otwórz menu nawigacyjne"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
       
-      <!-- Mobile Menu Button -->
-      <button 
-        class="mobile-menu-btn" 
-        id="mobile-menu-btn" 
-        aria-label="Otwórz menu nawigacyjne"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-      >
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      </button>
-      
-      <!-- Mobile Navigation -->
+      <!-- Mobile Navigation (absolutely positioned, so it remains a sibling for correct positioning context) -->
       <nav 
         class="mobile-nav" 
         id="mobile-nav" 
@@ -378,7 +384,7 @@
                 <h3 class="font-bold text-xl mb-2">II spotkanie kandydatów do członkostwa</h3>
                 <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
               </div>
-               <!-- Card 5 -->
+                <!-- Card 5 -->
               <div class="card-bg p-6 flex flex-col">
                 <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
                 <h3 class="font-bold text-xl mb-2">I spotkanie kandydatów do członkostwa</h3>
