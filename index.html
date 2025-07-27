@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stowarzyszenie Wolnej Myśli</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     html {
       scroll-behavior: smooth;
@@ -346,39 +346,60 @@
   <!-- Aktualności -->
   <section id="aktualnosci" class="max-w-7xl mx-auto py-12 px-4">
     <h2 class="text-3xl font-bold text-hero mb-8 text-center"><span class="bg-overlay">Aktualności</span></h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Upcoming Event -->
-      <div class="card-bg p-6 flex flex-col upcoming">
-        <span class="font-bold mb-2">24 sierpnia 2025</span>
-        <h3 class="font-bold text-xl mb-2">Planowane I Zebranie Zarządu oraz Członków</h3>
-        <p class="flex-1 mb-4 text-amber-800 font-semibold">Nadchodzące wydarzenie</p>
-        <p class="flex-1 mb-4 text-gray-700">Spotkanie ma na celu przygotowanie we współpracy ustaw, które będą głosowane na najbliższym posiedzeniu, zaraz po ogłoszeniu KRS.</p>
-      </div>
-      <!-- Highlighted Event -->
-      <div class="card-bg p-6 flex flex-col highlighted-event">
-        <span class="font-bold mb-2">17 lipca 2025</span>
-        <h3 class="font-bold text-xl mb-2">Zebranie Założycielskie</h3>
-        <p class="flex-1 mb-4 text-red-800 font-semibold">Wydarzenie kluczowe</p>
-        <p class="flex-1 mb-4 text-gray-700">Uchwaliliśmy założenie stowarzyszenia, statut, oraz powołaliśmy członków na odpowiednie funkcje.</p>
-      </div>
-      <!-- Past Event -->
-       <div class="card-bg p-6 flex flex-col">
-        <span class="text-red-600 font-bold mb-2">12 lipca 2025</span>
-        <h3 class="font-bold text-xl mb-2">III spotkanie kandydatów do członkostwa</h3>
-        <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
-      </div>
-      <!-- Past Event -->
-      <div class="card-bg p-6 flex flex-col">
-        <span class="text-red-600 font-bold mb-2">8 czerwca 2025</span>
-        <h3 class="font-bold text-xl mb-2">II spotkanie kandydatów do członkostwa</h3>
-        <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
-      </div>
-       <!-- Past Event -->
-      <div class="card-bg p-6 flex flex-col">
-        <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
-        <h3 class="font-bold text-xl mb-2">I spotkanie kandydatów do członkostwa</h3>
-        <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach</p>
-      </div>
+    <div class="flex items-start justify-center gap-x-4">
+        <div class="grid md:grid-cols-3 gap-8 flex-grow">
+          <!-- Card 1 -->
+          <div class="card-bg p-6 flex flex-col upcoming">
+            <span class="font-bold mb-2">24 sierpnia 2025</span>
+            <h3 class="font-bold text-xl mb-2">Planowane I Zebranie Zarządu oraz Członków</h3>
+            <p class="flex-1 mb-4 text-amber-800 font-semibold">Nadchodzące wydarzenie</p>
+            <p class="flex-1 mb-4 text-gray-700">Spotkanie ma na celu przygotowanie we współpracy ustaw, które będą głosowane na najbliższym posiedzeniu, zaraz po ogłoszeniu KRS.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="card-bg p-6 flex flex-col highlighted-event">
+            <span class="font-bold mb-2">17 lipca 2025</span>
+            <h3 class="font-bold text-xl mb-2">Zebranie Założycielskie</h3>
+            <p class="flex-1 mb-4 text-red-800 font-semibold">Wydarzenie kluczowe</p>
+            <p class="flex-1 mb-4 text-gray-700">Uchwaliliśmy założenie stowarzyszenia, statut, oraz powołaliśmy członków na odpowiednie funkcje.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="card-bg p-6 flex flex-col">
+            <span class="text-red-600 font-bold mb-2">12 lipca 2025</span>
+            <h3 class="font-bold text-xl mb-2">III spotkanie kandydatów do członkostwa</h3>
+            <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
+          </div>
+          
+          <!-- Hidden Cards Wrapper -->
+          <div id="hidden-news-cards" class="md:col-span-3" style="max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out 0.1s;">
+            <div class="grid md:grid-cols-3 gap-8 pt-8">
+              <!-- Card 4 -->
+              <div class="card-bg p-6 flex flex-col">
+                <span class="text-red-600 font-bold mb-2">8 czerwca 2025</span>
+                <h3 class="font-bold text-xl mb-2">II spotkanie kandydatów do członkostwa</h3>
+                <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
+              </div>
+               <!-- Card 5 -->
+              <div class="card-bg p-6 flex flex-col">
+                <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
+                <h3 class="font-bold text-xl mb-2">I spotkanie kandydatów do członkostwa</h3>
+                <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Desktop toggle button -->
+        <div id="desktop-news-toggle-container" class="hidden md:flex items-center justify-center pl-4" style="padding-top: 6rem;">
+            <button id="desktop-news-toggle" aria-label="Rozwiń aktualności" class="text-red-700/60 hover:text-red-700 transition text-4xl">
+              <i id="desktop-news-icon" class="fas fa-chevron-circle-down"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Toggle Button Container -->
+    <div id="mobile-news-toggle-container" class="text-center mt-8 md:hidden">
+      <button id="mobile-news-toggle" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 flex items-center justify-center mx-auto">
+        <span id="mobile-news-text">Pokaż więcej</span>
+        <i id="mobile-news-icon" class="fas fa-chevron-down ml-2"></i>
+      </button>
     </div>
   </section>
 
@@ -634,6 +655,61 @@
           });
         }
       });
+    });
+
+    // --- News Toggler (Responsive & Animated) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const hiddenNewsWrapper = document.getElementById('hidden-news-cards');
+        const desktopBtn = document.getElementById('desktop-news-toggle');
+        const desktopIcon = document.getElementById('desktop-news-icon');
+        const mobileBtn = document.getElementById('mobile-news-toggle');
+        const mobileText = document.getElementById('mobile-news-text');
+        const mobileIcon = document.getElementById('mobile-news-icon');
+        
+        const desktopContainer = document.getElementById('desktop-news-toggle-container');
+        const mobileContainer = document.getElementById('mobile-news-toggle-container');
+
+        // Check if there are any hidden cards to toggle
+        const hasHiddenCards = hiddenNewsWrapper && hiddenNewsWrapper.querySelector('.card-bg');
+
+        if (hasHiddenCards) {
+            let isExpanded = false;
+
+            const toggleNews = () => {
+                isExpanded = !isExpanded;
+
+                if (isExpanded) {
+                    // Expand
+                    hiddenNewsWrapper.style.maxHeight = hiddenNewsWrapper.scrollHeight + 'px';
+                    hiddenNewsWrapper.style.opacity = '1';
+                } else {
+                    // Collapse
+                    hiddenNewsWrapper.style.maxHeight = '0';
+                    hiddenNewsWrapper.style.opacity = '0';
+                }
+
+                // Update mobile button
+                if (mobileText && mobileIcon) {
+                    mobileText.textContent = isExpanded ? 'Pokaż mniej' : 'Pokaż więcej';
+                    mobileIcon.classList.toggle('fa-chevron-down', !isExpanded);
+                    mobileIcon.classList.toggle('fa-chevron-up', isExpanded);
+                }
+
+                // Update desktop button
+                if (desktopIcon) {
+                    desktopIcon.classList.toggle('fa-chevron-circle-down', !isExpanded);
+                    desktopIcon.classList.toggle('fa-chevron-circle-up', isExpanded);
+                }
+            };
+
+            if (desktopBtn) desktopBtn.addEventListener('click', toggleNews);
+            if (mobileBtn) mobileBtn.addEventListener('click', toggleNews);
+
+        } else {
+            // If no hidden cards, hide the toggle buttons
+            if (desktopContainer) desktopContainer.classList.add('hidden');
+            if (mobileContainer) mobileContainer.classList.add('hidden');
+        }
     });
   </script>
 </body>
