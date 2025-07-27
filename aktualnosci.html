@@ -44,9 +44,6 @@
       background-color: rgba(255,255,255,0.90);
       font-weight: 700;
       color: #b71c1c;
-      margin-bottom: 1rem;
-      transform: scale(1.02);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
 
     .upcoming {
@@ -55,7 +52,6 @@
       background-color: rgba(255,255,255,0.85);
       font-weight: 700;
       color: #b45309;
-      margin-bottom: 1rem;
     }
     
     .card-bg {
@@ -297,12 +293,6 @@
       background-size: cover;
       width: 320px;
       height: 420px;
-      display: flex;
-      align-items: flex-end;
-    }
-    
-    .swiper-slide .card-bg {
-        width: 100%;
     }
 
     .swiper-button-next, .swiper-button-prev {
@@ -316,6 +306,11 @@
     .swiper-button-next:hover, .swiper-button-prev:hover {
         background-color: rgba(211, 47, 47, 0.9);
         color: #fff;
+    }
+    .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
     }
 
     .swiper-button-next::after, .swiper-button-prev::after {
@@ -388,20 +383,22 @@
       <!-- Swiper Carousel -->
       <div class="swiper-container my-8">
         <div class="swiper-wrapper">
-          <!-- Slide 1: I spotkanie -->
+          <!-- Slide 1: Planowane Zebranie -->
           <div class="swiper-slide">
-            <div class="card-bg p-6 flex flex-col">
-              <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
-              <h3 class="font-bold text-xl mb-2">I spotkanie kandydatów do członkostwa</h3>
-              <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach</p>
+            <div class="card-bg p-6 flex flex-col upcoming">
+              <span class="font-bold mb-2">24 sierpnia 2025</span>
+              <h3 class="font-bold text-xl mb-2">Planowane I Zebranie Zarządu oraz Członków</h3>
+              <p class="flex-1 mb-4 text-amber-800 font-semibold">Nadchodzące wydarzenie</p>
+              <p class="flex-1 mb-4 text-gray-700">Spotkanie ma na celu przygotowanie we współpracy ustaw, które będą głosowane na najbliższym posiedzeniu, zaraz po ogłoszeniu KRS.</p>
             </div>
           </div>
-          <!-- Slide 2: II spotkanie -->
+          <!-- Slide 2: Zebranie Założycielskie -->
           <div class="swiper-slide">
-            <div class="card-bg p-6 flex flex-col">
-              <span class="text-red-600 font-bold mb-2">8 czerwca 2025</span>
-              <h3 class="font-bold text-xl mb-2">II spotkanie kandydatów do członkostwa</h3>
-              <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
+            <div class="card-bg p-6 flex flex-col highlighted-event">
+              <span class="font-bold mb-2">17 lipca 2025</span>
+              <h3 class="font-bold text-xl mb-2">Zebranie Założycielskie</h3>
+              <p class="flex-1 mb-4 text-red-800 font-semibold">Wydarzenie kluczowe</p>
+              <p class="flex-1 mb-4 text-gray-700">Uchwaliliśmy założenie stowarzyszenia, statut, oraz powołaliśmy członków na odpowiednie funkcje.</p>
             </div>
           </div>
           <!-- Slide 3: III spotkanie -->
@@ -412,22 +409,20 @@
               <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
             </div>
           </div>
-          <!-- Slide 4: Zebranie Założycielskie -->
+          <!-- Slide 4: II spotkanie -->
           <div class="swiper-slide">
-            <div class="card-bg p-6 flex flex-col highlighted-event">
-              <span class="font-bold mb-2">17 lipca 2025</span>
-              <h3 class="font-bold text-xl mb-2">Zebranie Założycielskie</h3>
-              <p class="flex-1 mb-4 text-red-800 font-semibold">Wydarzenie kluczowe</p>
-              <p class="flex-1 mb-4 text-gray-700">Uchwaliliśmy założenie stowarzyszenia, statut, oraz powołaliśmy członków na odpowiednie funkcje.</p>
+            <div class="card-bg p-6 flex flex-col">
+              <span class="text-red-600 font-bold mb-2">8 czerwca 2025</span>
+              <h3 class="font-bold text-xl mb-2">II spotkanie kandydatów do członkostwa</h3>
+              <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
             </div>
           </div>
-          <!-- Slide 5: Planowane Zebranie -->
+          <!-- Slide 5: I spotkanie -->
           <div class="swiper-slide">
-            <div class="card-bg p-6 flex flex-col upcoming">
-              <span class="font-bold mb-2">24 sierpnia 2025</span>
-              <h3 class="font-bold text-xl mb-2">Planowane I Zebranie Zarządu oraz Członków</h3>
-              <p class="flex-1 mb-4 text-amber-800 font-semibold">Nadchodzące wydarzenie</p>
-              <p class="flex-1 mb-4 text-gray-700">Spotkanie ma na celu przygotowanie we współpracy ustaw, które będą głosowane na najbliższym posiedzeniu, zaraz po ogłoszeniu KRS.</p>
+            <div class="card-bg p-6 flex flex-col">
+              <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
+              <h3 class="font-bold text-xl mb-2">I spotkanie kandydatów do członkostwa</h3>
+              <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach</p>
             </div>
           </div>
         </div>
@@ -574,13 +569,12 @@
       grabCursor: true,
       centeredSlides: true,
       slidesPerView: 'auto',
-      loop: true,
-      // initialSlide is removed to start from the beginning (index 0)
+      loop: false, // Looping is disabled
       coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
+        rotate: 40,
+        stretch: 10,
+        depth: 150,
+        modifier: 1.5,
         slideShadows: true,
       },
       pagination: {
